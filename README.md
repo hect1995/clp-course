@@ -1,0 +1,1 @@
+Aquest repositori conté els documents i codi del Lab de CLP
