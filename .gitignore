@@ -9,3 +9,8 @@
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
+
+# LaTeX aux files
+*.aux
+*.log
+*.syntex.gz

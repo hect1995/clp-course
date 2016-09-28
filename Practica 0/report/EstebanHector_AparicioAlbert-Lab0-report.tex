@@ -21,9 +21,11 @@
 %   read geometry.pdf for detailed page layout information
 
 \usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{xcolor}
 \usepackage{caption}
 \usepackage{subcaption}
 % \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{listings}
 
 %%% PACKAGES
 \usepackage{booktabs} % for much better looking tables
@@ -31,6 +33,7 @@
 \usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
 \usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{diagbox}
 \usepackage{mwe}
 \usepackage{url}
 % These packages are all incorporated in the memoir class to one degree or another...
@@ -67,6 +70,40 @@
          % otherwise the current date is printed 
 
 \begin{document}
+	
+% ---- MATLAB Code definitions ----- %
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+	%backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+	basicstyle=\ttfamily\footnotesize,        % the size of the fonts that are used for the code
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	breaklines=true,                 % sets automatic line breaking
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	%frame=single,	                   % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	language=Matlab,                 % the language of the code
+	otherkeywords={*,...},            % if you want to add more keywords to the set
+	%numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	%numbersep=5pt,                   % how far the line-numbers are from the code
+	%numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{mymauve},     % string literal style
+	tabsize=2,	                   % sets default tabsize to 2 spaces
+	title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
 \maketitle
 
 \section{Test de gaussianidad de distribuciones sintéticas}
@@ -222,5 +259,65 @@ Las figuras \ref{fig:23:white} y \ref{fig:23:liquid} muestran los conjuntos de g
 	\caption{Gráficos de las mediciones sobre las características de líquido cefaloraquídeo.}
 	\label{fig:23:liquid}
 \end{figure*}
+
+\newpage
+
+\section[Int. confianza]{Estimación de intervalos de confianza}
+
+En la tabla \ref{tab:24:intervals} se muestran los intervalos de confianza calculados con el siguiente código, añadido al script \texttt{prac0\_Brain.m}:
+
+\lstinputlisting{../codigo_24.m}
+
+En el código, las variables \texttt{interval\_p\_X\_Y} se refieren al intervalo de confianza positivo para la clase X, con nivel de confianza Y, y las variables \texttt{interval\_n\_X\_Y} se refieren al intervalo de confianza negativo para la clase X, con nivel de confianza Y.
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c |}
+			\hline
+			\diagbox[width=10em]{\textbf{Confianza}}{\textbf{Clase}} & \textbf{Materia gris} & \textbf{Materia blanca} & \textbf{Líquido cefaloraquídeo} \\
+			\hline
+			\textbf{95\%} & $ \left\lbrace 0.0456 , 0.0544 \right\rbrace $ & $ \left\lbrace 0.3778 , 0.3844 \right\rbrace $ & $ \left\lbrace -0.6320 , -0.6225 \right\rbrace $ \\
+			\hline
+			\textbf{99\%} & $ \left\lbrace 0.0443 , 0.0557 \right\rbrace $ & $ \left\lbrace 0.3767 , 0.3854 \right\rbrace $ & $ \left\lbrace -0.6335 , -0.6210 \right\rbrace $ \\
+			\hline
+			\textbf{99.9\%} & $ \left\lbrace 0.0427 , 0.0573 \right\rbrace $ & $ \left\lbrace 0.3755 , 0.3866 \right\rbrace $ & $ \left\lbrace -0.6352 , -0.6192 \right\rbrace $ \\
+			\hline
+		\end{tabular}
+		\caption{Intervalos de confianza para las tres clases de la BBDD y para los tres niveles de confianza requeridos.}
+		\label{tab:24:intervals}
+	\end{center}
+\end{table}
+
+\section[Tests gausianidad]{Test de gaussianidad de base de datos Brain}
+
+A continuación se muestra el código que se ha añadido al script \texttt{prac0\_Brain.m}:
+
+\lstinputlisting{../codigo_25.m}
+
+Las variables \texttt{hX}, \texttt{pX}, \texttt{dfX} contienen la hipótesis seleccionada, el valor del \textit{p-value} y los grados de libertad para la clase X, respectivamente.
+
+\subsection[1er caso]{Hipótesis nula $H_0$ : La característica 1 de la clase 1 es gaussiana con un nivel de significancia ($\alpha$) de 0.001}
+
+La función devuelve $h = 1$ (rechaza la hipótesis nula). 
+
+El valor de \textit{p-value} es $2.22 \cdot 10^{-71} \approx 0$. Los grados de libertad son 4. 
+
+Si miramos la Kurtosis y el Skewness de la clase Materia Gris en la primera característica (figura \ref{fig:23:gray:skew_kurt}, 1ra columna)se ve con claridad que no corresponden a una Gaussiana.
+
+\subsection[2do caso]{Hipótesis nula $H_0$ : La característica 1 de la clase 2 es gaussiana con un nivel de significancia ($\alpha$) de 0.001}
+
+Se mantendrá la hipótesis nula $h = 0$.
+
+El valor de $p$ es $p-value = 0.0012 > \alpha$. Los grados de libertad son 7. 
+
+Si miramos el Skewness y Kurtosis (figura \ref{fig:23:gray:skew_kurt}, 2da columna) vemos que son prácticamente 0 para la característica 1 de Materia Blanca.
+
+\subsection[3er caso]{Hipótesis nula $H_0$ : La característica 1 de la clase 3 es gaussiana con un nivel de significancia ($\alpha$) de 0.001}
+
+Se mantendrá la hipótesis nula $h = 0$.
+
+El valor de $p$ es $p-value = 6.84e-14$. Los grados de libertad son 7. 
+
+En la figura \ref{fig:23:gray:skew_kurt}, 3ra columna, vemos el Skewness y Kurtosis de la característica 1 del líquido cefalorraquídeo. En ella vemos que aunque el Skewness es prácticamente 0, la Kurtosis es demasiado elevada para parecerse a una Gaussiana.
 
 \end{document}
