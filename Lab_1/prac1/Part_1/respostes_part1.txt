@@ -1,0 +1,50 @@
+Lineal
+=====================
+
+3 dB
+
+Clase 1 = 5/1000
+Clase 2 = 8/1000
+
+0 db
+
+Clase 1 = 42/1000
+Clase 2 = 34/1000
+
+-3 db
+
+Clase 1 = 107/1000
+Clase 2 = 106/1000
+
+-10 db
+
+Clase 1 = 300/1000
+Clase 2 = 310/1000
+
+
+Quadratic
+=====================
+
+3 dB
+
+Clase 1 = 7/1000
+Clase 2 = 3/1000
+
+0 db
+
+Clase 1 = 41/1000
+Clase 2 = 36/1000
+
+-3 db
+
+Clase 1 = 114/1000
+Clase 2 = 118/1000
+
+-10 db
+
+Clase 1 = 292/1000
+Clase 2 = 306/1000
+
+------------------------------
+
+Estas variaciones en las distancias son debidas al error en las estimaciones de las medias y covarianzas de los vectores de las clases, hechas por la función 'mahal'.

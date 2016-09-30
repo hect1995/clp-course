@@ -1,0 +1,57 @@
+Los clasificadores son similares debido a que las variaciones entre las covarianzas son pequeñas y las p.d.f. ya son separables.
+
+CASO 3
+================
+
+SNR = 10dB
+---------------------
+
+AUTOVALORES TEÓRICOS
+
+la varianza se ha obtenido de las diagonales de la matriz de covarianza
+
+1       2
+0.0375, 0.0125
+
+0.0250, 0.0250
+
+0.0125, 0.0375
+
+0.0450, 0.0050
+
+AUTOVALORES PRÁCTICOS
+2         1
+0.0125    0.0375
+0.0250    0.0250
+0.0125    0.0375
+0.0050    0.0450
+
+SNR = 5dB
+---------------------
+
+AUTOVALORES TEÓRICOS
+
+la varianza se ha obtenido de las diagonales de la matriz de covarianza
+
+1       2
+0.11865, 0.03955
+
+0.0791, 0.0791
+
+0.03955, 0.11865
+
+0.14238, 0.01582
+
+AUTOVALORES PRÁCTICOS
+
+    0.0395    0.1186
+    0.0791    0.0791
+    0.0395    0.1186
+    0.0158    0.1423
+
+
+
+MULTIPLICAR CLASE 1
+--------------------
+
+En este caso, se ve claramente como el discriminante cuadrático funciona mucho mejor que el lineal. Las elipses del cuadrático que resultan "envuelven" las caracteristicas de las clases 2, 3 y 4, mientras que el lineal corta todas las nubes gausianas de características.

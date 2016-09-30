@@ -12,8 +12,8 @@ SNR=input('SNR(dB)=');
 dist=1;
 n_classes=4;                     %QPSK
 n_samples=[1000;1000;1000;1000];
-ro= 0*ones(1,n_classes);	   %Correlation between gaussian components
-%ro=[0.5 0 -0.5 0.8];           %To be activated in Part 2, second part
+% ro= 0*ones(1,n_classes);	   %Correlation between gaussian components
+ro=[0.5 0 -0.5 0.8];           %To be activated in Part 2, second part
 n_feat=2;
 M_Means=0.5*dist*[1,1;1,-1;-1,1;-1,-1]; %QPSK mean vector;
 clear dist
@@ -31,7 +31,7 @@ clear V Energy
 %Covariance matrix
 M_covar=zeros(n_feat,n_feat,n_classes);
 sigma=ones(1,n_classes)*sigma/n_feat;
-
+sigma(1) = 30;
 for i_class=1:n_classes
    M_covar(:,:,i_class)=sigma(i_class)*[1 ro(i_class);ro(i_class) 1];	%Covariance Matrix class i_class
 end
