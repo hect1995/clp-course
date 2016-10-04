@@ -1,0 +1,7 @@
+Part 2. Cas 2—> Observacions
+
+Observando las matrices de confusión se puede apreciar como los resultados para ro=0 i ro=0.5 son prácticamente iguales. Cabe destacar que se produce una diferencia en las formas de las Gausianas y de las fronteras en ambos casos debido a que en el caso de ro=0 los dos autovalores de la matriz coinciden con lo que provocan una gausiana totalmente circular, en cambio para ro=0.5 su forma es parecida a la de una elipse.
+
+Cas 3 —> Observacions
+
+Aumento el valor de sigma de la clase 1 hemos aumentado su rango de afluencia por todo el plano, con lo que resta imposible separarla de las demás clases por lineas rectas. En canvio si utilizamos clasificadores cuarticos estos nos permiten envolver de una manera determinada las clases y así conseguir la separación deseada. En nuestro ejemplo obtuvimos un error provocado por el clasificador lineal = 0.2075 y 0.005 para el clasificador cuadratico . También se aprecia que debido a los valores no nulos de ro en los símbolos 1,3 y 4 sus formas no son totalmente circulares.
