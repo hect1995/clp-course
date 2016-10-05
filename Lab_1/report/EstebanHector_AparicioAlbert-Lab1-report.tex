@@ -34,6 +34,7 @@
 \usepackage{url}
 \usepackage{diagbox}
 \usepackage{amsmath}
+\usepackage{pdfpages}
 % These packages are all incorporated in the memoir class to one degree or another...
 
 %%% HEADERS & FOOTERS
@@ -69,6 +70,8 @@
 
 \begin{document}
 \maketitle
+
+\textbf{Nota:} Al final del documento se encuentra la resolución del estudio previo.
 
 \section[Parte 1 - ROC]{Análisis de curvas ROC}
 
@@ -369,5 +372,9 @@ El resultado se muestra en la figura \ref{fig:c3:mult}:
 	\caption{Diagramas \emph{Scatter} con la covarianza de la 1ra clase ampliada}
 	\label{fig:c3:mult}
 \end{figure}
+
+\clearpage
+
+\includepdf[pages={1}]{../CLP_Prac1_Estudio-Previo.pdf}
 
 \end{document}
