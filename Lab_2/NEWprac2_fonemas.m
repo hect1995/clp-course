@@ -5,8 +5,8 @@ close all;  % close all previous figures
 
 %% Options / Initalitation
 i_dib=1;				 %0 NO /1 YES: plot spectrums
-V_coor=1:64;             %64 to take all features set 1:64
-%V_coor=[16 50];         % EXAMPLE: Selection of a subset of two features
+% V_coor=1:64;             %64 to take all features set 1:64
+V_coor=[22 64];         % EXAMPLE: Selection of a subset of two features
 
 N_feat=length(V_coor);
 % class name: Labels:
@@ -54,13 +54,13 @@ if i_dib==1
     title('Average');
     clear index aux i_color i_clas eje_frec Frec_max
 end
-clear i_dib N_fft
+% clear i_dib N_fft
 
 %% Feature selection
 if V_coor(1)~=0
     X=X(:,V_coor);  % Feature selection
 end
-clear V_coor
+% clear V_coor
  
 %% Database partition
 P_train=0.7;
@@ -79,7 +79,7 @@ Labels_train=Labels(Index_train);
 % Test Selection and mixing
 X_test=X(Index_test,:);
 Labels_test=Labels(Index_test);
-clear Index_train Index_test index i_class N_i_class I_train I_test
+% clear Index_train Index_test index i_class N_i_class I_train I_test
 
 %% Create a default (linear) discriminant analysis classifier:
 linclass = fitcdiscr(X_train,Labels_train,'prior','empirical')
@@ -106,7 +106,8 @@ CM_Quadratic_test=confusionmat(Labels_test,Quadratic_out)
 %% create a scatter plot of the data
 if N_feat==2
     figure('name','scatter and boundaries for class aa')
-    gscatter(X(:,1),X(:,2),Labels,'krbgy','ov^*+')
+    gscatter(X(:,1),X(:,2),Labels,'brgky','ov^*+')%'b' 'r' 'g' 'k' 'y'
+%     'krbgy'
     grid
     hold on
     Xmin=min(X(:,1));
@@ -137,7 +138,7 @@ if N_feat==2
         h.Color = 'r';
         h.LineWidth = 2;
     end
-    clear Xmin Xmax Ymin Ymax h K L Q V
+%     clear Xmin Xmax Ymin Ymax h K L Q V
     title('LC Boundaries (k) QC Boundaries (r)')
 end
 

@@ -1,0 +1,3 @@
+La probabilidad de error del clasificador lineal se queda "estancada" con menos características que el quadrático, ya que tiene menos grados de libertad y requiere menos características para entrenar el clasificador correctamente.
+
+El código que hace las proyecciones PCA se ha hecho con un bucle paralelo (parfor) de MATLAB, de manera que el tiempo de ejecución se reduce aproximadamente a razón del número de procesadores de que disponga el ordenador.

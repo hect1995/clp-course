@@ -1,0 +1,3 @@
+Para las componentes 22 y 64, se han elegido componentes que separaran bien todas las componentes a la vez. Sin embargo, el resultado es que los pares de clases 1-2 y 4-5 aparecen mezclados.
+
+Eligiendo las componentes 8 y 40, las clases 4 y 5 se han separado mejor, aunque la pareja 1-2 sigue apareciendo mezclada.

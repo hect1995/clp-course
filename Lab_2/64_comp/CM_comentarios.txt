@@ -1,0 +1,3 @@
+La matriz de confusión del clasificador cuadrático en test tiene mayor índice de errores, debida a la tendencia a sobreentrenar que tiene este clasificador.
+
+La matriz del clasificador lineal tiene menos errores en test, cosa que también se refleja en sus probabilidades de error, ya que por sus pocos grados de libertad, debe generalizar más en la clasificación.
