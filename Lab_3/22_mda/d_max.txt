@@ -1,0 +1,3 @@
+dMax será 4, ya que MDA puede trabajar hasta c-1 (c numero de clases). Hemos visto que esto se da en el momento de calcular la matriz W, ya que tiene tamaño 256x4
+
+Las probabilidades de error son menores en MDA, para d=1..4

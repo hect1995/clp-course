@@ -1,0 +1,156 @@
+Reduccion de dimensionalidad por seleccion de caracteristicas
+ Tecnica de seleccion: MDA (0)  PCA (1) 1
+ Generacion de datos Gaussianos. Introduzca semilla = 3
+SNR (dB) =5
+
+------- Prob error en 3D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+ Datos de test
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+------- Prob error en 2D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+ Datos de test
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+------- Prob error en 1D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+ Datos de test
+ P(error-LC) = 0   
+ P(error-QC) = 0 
+
+
+
+
+
+
+Reduccion de dimensionalidad por seleccion de caracteristicas
+ Tecnica de seleccion: MDA (0)  PCA (1) 0
+ Generacion de datos Gaussianos. Introduzca semilla = 3
+SNR (dB) =5
+
+------- Prob error en 3D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+ Datos de test
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+------- Prob error en 2D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+ Datos de test
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+------- Prob error en 1D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+ Datos de test
+ P(error-LC) = 0   
+ P(error-QC) = 0  
+
+
+
+
+
+
+
+Reduccion de dimensionalidad por seleccion de caracteristicas
+ Tecnica de seleccion: MDA (0)  PCA (1) 1
+ Generacion de datos Gaussianos. Introduzca semilla = 3
+SNR (dB) =-5
+
+------- Prob error en 3D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+ Datos de test
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+------- Prob error en 2D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0.660667   
+ P(error-QC) = 0.658667   
+
+ Datos de test
+ P(error-LC) = 0.666667   
+ P(error-QC) = 0.658667   
+
+------- Prob error en 1D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0.674   
+ P(error-QC) = 0.67   
+
+ Datos de test
+ P(error-LC) = 0.674667   
+ P(error-QC) = 0.650667  
+
+
+
+
+Reduccion de dimensionalidad por seleccion de caracteristicas
+ Tecnica de seleccion: MDA (0)  PCA (1) 0
+ Generacion de datos Gaussianos. Introduzca semilla = 3
+SNR (dB) =-5
+
+------- Prob error en 3D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+ Datos de test
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+------- Prob error en 2D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+ Datos de test
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+------- Prob error en 1D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+ Datos de test
+ P(error-LC) = 0   
+ P(error-QC) = 0
+
+
+El método MDA resulta ventajoso cuando hay poca separación entre clases, de manera que a la hora de reducir características, se trata de maximizar esta separación.

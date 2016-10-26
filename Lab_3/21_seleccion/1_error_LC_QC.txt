@@ -1,0 +1,31 @@
+Semilla 2
+
+------- Prob error en 3D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0.004   
+ P(error-QC) = 0   
+
+ Datos de test
+ P(error-LC) = 0   
+ P(error-QC) = 0   
+
+------- Prob error en 2D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0.01   
+ P(error-QC) = 0.00133333   
+
+ Datos de test
+ P(error-LC) = 0.00533333   
+ P(error-QC) = 0   
+
+------- Prob error en 1D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0.00933333   
+ P(error-QC) = 0.00466667   
+
+ Datos de test
+ P(error-LC) = 0.00533333   
+ P(error-QC) = 0.00266667 

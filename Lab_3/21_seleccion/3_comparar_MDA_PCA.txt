@@ -1,0 +1,77 @@
+Reduccion de dimensionalidad por seleccion de caracteristicas
+ Tecnica de seleccion: MDA (0)  PCA (1) 1
+ Generacion de datos Gaussianos. Introduzca semilla = 2
+SNR (dB) =0
+
+------- Prob error en 3D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0.156   
+ P(error-QC) = 0.0733333   
+
+ Datos de test
+ P(error-LC) = 0.133333   
+ P(error-QC) = 0.096   
+
+------- Prob error en 2D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0.184   
+ P(error-QC) = 0.166667   
+
+ Datos de test
+ P(error-LC) = 0.154667   
+ P(error-QC) = 0.138667   
+
+------- Prob error en 1D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0.194667   
+ P(error-QC) = 0.189333   
+
+ Datos de test
+ P(error-LC) = 0.181333   
+ P(error-QC) = 0.157333
+
+
+
+
+
+
+
+Reduccion de dimensionalidad por seleccion de caracteristicas
+ Tecnica de seleccion: MDA (0)  PCA (1) 0
+ Generacion de datos Gaussianos. Introduzca semilla = 2
+SNR (dB) =0
+
+------- Prob error en 3D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0.156   
+ P(error-QC) = 0.0733333   
+
+ Datos de test
+ P(error-LC) = 0.133333   
+ P(error-QC) = 0.096   
+
+------- Prob error en 2D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0.156   
+ P(error-QC) = 0.130667   
+
+ Datos de test
+ P(error-LC) = 0.133333   
+ P(error-QC) = 0.136   
+
+------- Prob error en 1D -------
+
+ Datos de entrenamiento
+ P(error-LC) = 0.171333   
+ P(error-QC) = 0.171333   
+
+ Datos de test
+ P(error-LC) = 0.16   
+ P(error-QC) = 0.141333  
+
+Para los casos de 3D, las probabilidades de error son las mismas, ya que el procesado es el mismo (no hay reducción de características). En los casos en que sí se reducen, el MDA da menores probabilidades de error tanto en 2D como en 1D.

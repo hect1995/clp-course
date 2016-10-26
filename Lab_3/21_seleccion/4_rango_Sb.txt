@@ -1,0 +1,3 @@
+El hecho de que tengamos 2 caracteristicas estrictamente independientes provoca que si queremos tener unos resultados adecuados necesitamos hacer como minimo uso de estas 2 características.
+
+El rango teóricamente deberia ser 1 porque las medias están alineadas.

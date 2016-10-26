@@ -1,0 +1,3 @@
+Para 1D, el MDA compacta mejor los datos, reduciendo la superposición de los datos. El PCA muestra los datos muy superpuestos.
+
+En el caso 2D, todas las clases están superpuestas, aunque en MDA lo están en menor grado. Además, en MDA las clases están más compactadas. En el scatter de PCA, hay mayor dispersión de datos.
