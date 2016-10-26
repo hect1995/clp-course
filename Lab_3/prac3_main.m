@@ -1,6 +1,6 @@
 % Updated to Matlab 2015
 % MC marzo 16
-% Introducci髇 de par醡etros
+% Introducci贸n de par谩metros
 clear
 close all
 
@@ -18,15 +18,15 @@ switch tec_red_dim
 end        
 
 i_plot=1;                   %0 NO /1 SI: Representacion inicial de la BD en 3D
-i_scplot=1;                 %0 NO /1 SI: Representacion fronteras de decisi髇 en 2D
+i_scplot=1;                 %0 NO /1 SI: Representacion fronteras de decisi贸n en 2D
 
 %% Generacion de la base de datos Gaussiana
 sem_aleat=input(' Generacion de datos Gaussianos. Introduzca semilla = ');
 randn('seed',sem_aleat)
 SNR=input('SNR (dB) =');
-% prac3_gengauss;             % Generacion de BD Gaussiana medias NO alineadas
-prac3_gengauss_al;         % Generacion de BD Gaussiana MEDIAS ALINEADAS
-%% Visualizacion de la BD de train.
+prac3_gengauss;             % Generacion de BD Gaussiana medias NO alineadas
+% prac3_gengauss_al;         % Generacion de BD Gaussiana MEDIAS ALINEADAS
+%% Visualizaci贸n de la BD de train.
 if i_plot==1
     % SCATTER PLOT
     figure
@@ -47,7 +47,7 @@ if i_plot==1
 end
 clear i_plot
 
-%% Construcci髇 del clasificador para los datos en 3D 
+%% Construcci贸n del clasificador para los datos en 3D 
 % y calculo de la probabilidad de error
 
 % Datos de entrenamiento
@@ -71,13 +71,13 @@ Quadratic_out= predict(quaclass,X_test);
 Quadratic_Pe_test=sum(Labels_test ~= Quadratic_out)/length(Labels_test);
 fprintf(1,' P(error-QC) = %g   \n', Quadratic_Pe_test)
 
-%%  Proyecci髇 a 2D
+%%  Proyecci贸n a 2D
 W_fc=eval(xx_m);
 W_fc=W_fc(:,1:2);
 X_train=X_train*W_fc;
 X_test=X_test*W_fc;
 
-% Construcci髇 del clasificador para los datos en 2D
+% Construcci贸n del clasificador para los datos en 2D
 % y calculo de la probabilidad de error
 
 % Datos de entrenamiento
@@ -137,11 +137,11 @@ end
 title('Datos 2D y regiones de decision')
 clear Xmin Xmax Ymin Ymax h K L Q V
 
-%%  Proyecci髇 a 1D
+%%  Proyecci贸n a 1D
 X_train=X_train(:,1);
 X_test=X_test(:,1);
 
-% Construcci髇 del clasificador para los datos en 1D
+% Construcci贸n del clasificador para los datos en 1D
 % y calculo de la probabilidad de error
 
 % Datos de entrenamiento
