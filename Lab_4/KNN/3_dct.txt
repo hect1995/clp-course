@@ -1,0 +1,5 @@
+Principalmente, la energia de las transformaciones DCT se concentra en la componente continua (0,0). Dependiendo de cada carácter, se encuentra más o menos energia en el resto de componentes.
+
+Un caso particular es el del dígito 1. Al estar formado en su práctica totalidad por lineas verticales, la energia se concentra en la fila superior de la transformada. Esta fila corresponde a las funciones base con lineas verticales.
+
+Una aplicación de la DCT seria la de eliminar las muestras de alta frecuencia. Estas muestras de la DCT contienen poca energía, de manera que se pierde poca información.

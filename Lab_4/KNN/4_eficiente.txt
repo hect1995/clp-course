@@ -1,0 +1,1 @@
+La transformación DCT con 4x4 pixeles es la más eficiente.
