@@ -4,7 +4,7 @@ close all
 % Lectura de etiquetas
 load ref.txt
 % Lectura de datos
-X = textread('nci.txt','','delimiter',' '); 
+X = textread('nci.txt','','delimiter',' ');%x 
 X=X';
 Labels=ref;
 clear ref
