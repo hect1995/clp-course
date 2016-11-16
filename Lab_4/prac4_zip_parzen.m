@@ -1,20 +1,21 @@
+function [Iteration_prob] = prac4_zip_parzen()
 % updated to Matlab2015
 % MC 2016
-close all;
-clear;
-clc;
+% close all;
+% clear;
+% clc;
 %OPCIONES
-i_dib=1;					%0 NO /1 SI: DIBUJOS DE DIGITOS
-i_CM=1;						%0 NO /1 SI: CALCULA MATRIZ DE CONFUSION
+i_dib=0;					%0 NO /1 SI: DIBUJOS DE DIGITOS
+i_CM=0;						%0 NO /1 SI: CALCULA MATRIZ DE CONFUSION
 N_classes=10;
 K_neig=10;                      %PARAMETRO K en knn
-%% Elección de la transformada y reducción de dimensión
+%% Elecciï¿½n de la transformada y reducciï¿½n de dimensiï¿½n
 % disp(' ')
 % disp('Elegir Transformada')
 % i_transform=input(' No transformar (0), DCT (1)  Hadamard (2) = ');
 % if i_transform >0
 %     disp(' ')
-%     disp('Elegir Dimensión Reducida')
+%     disp('Elegir Dimensiï¿½n Reducida')
 %     N_dim=input(' Dim =  ');
 % else
 %     N_dim=16;
@@ -24,14 +25,14 @@ N_dim=4;
 N_feat=N_dim*N_dim;
 %% Lectura BD de train
 X_train=[];             % Matriz de Nx256 que contiene todos los vectores
-                        % Cada muestra va entre 0(Negro) y 1(Blanco)
+% Cada muestra va entre 0(Negro) y 1(Blanco)
 Labels_train=[];        % Etiquetas (Inicialmente los datos estan ordenados
-                        % por clases del 0 al 9)
+% por clases del 0 al 9)
 for k=0:N_classes-1
-    nombre=sprintf('train%d.txt',k);  
+    nombre=sprintf('train%d.txt',k);
     [data] = textread(nombre,'','delimiter',',');
     %data=round(data);  %OPCIONAL elimina los grises
-                            %y lo deja todo en blanco y negro
+    %y lo deja todo en blanco y negro
     X_train=[X_train;data];
     N_size=size(data);
     Labels_train=[Labels_train;k*ones(N_size(1),1)];
@@ -187,7 +188,8 @@ end
 clear i_dib A2 i_transform
 
 %% Create a Parzen classifier
-h = [1, 10, 20, 100];
+% h = [1, 10, 20, 100];
+h = 10:20;
 
 Predict_train = zeros(length(X_train), length(h));
 Predict_test = zeros(length(X_test), length(h));
@@ -197,9 +199,13 @@ for i = 1:length(h)
 end
 
 %% Replicate Labels
-Labels_test = repmat(Labels_test, 1, 4);
-Labels_train = repmat(Labels_train, 1, 4);
+Labels_test = repmat(Labels_test, 1, length(h));
+Labels_train = repmat(Labels_train, 1, length(h));
 
 %% Compute error probability
-Train_prob= 1 - (sum(Labels_train==Predict_train)/length(Labels_train));
-Test_prob= 1 - (sum(Labels_test==Predict_test)/length(Labels_test));
+% Transpose to get a column array
+Train_prob = (1 - (sum(Labels_train==Predict_train)/length(Labels_train)));
+Test_prob = (1 - (sum(Labels_test==Predict_test)/length(Labels_test)));
+
+Iteration_prob = [Train_prob', Test_prob']; % Matrix to be returned
+end

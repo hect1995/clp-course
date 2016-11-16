@@ -1,4 +1,4 @@
-function [ knn_Pe ] = compute_knn( method, dim, k )
+function [ knn_Pe ] = compute_knn( method, dim )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -11,14 +11,14 @@ function [ knn_Pe ] = compute_knn( method, dim, k )
 i_dib=0;					%0 NO /1 SI: DIBUJOS DE DIGITOS
 i_CM=0;						%0 NO /1 SI: CALCULA MATRIZ DE CONFUSION
 N_classes=10;
-K_neig=k;                      %PARAMETRO K en knn
-%% Elección de la transformada y reducción de dimensión
+% K_neig=k;                      %PARAMETRO K en knn
+%% Elecciï¿½n de la transformada y reducciï¿½n de dimensiï¿½n
 % disp(' ')
 % disp('Elegir Transformada')
 % i_transform=input(' No transformar (0), DCT (1)  Hadamard (2) = ');
 % if i_transform >0
 %     disp(' ')
-%     disp('Elegir Dimensión Reducida')
+%     disp('Elegir Dimensiï¿½n Reducida')
 %     N_dim=input(' Dim =  ');
 % else
 %     N_dim=16;
@@ -204,25 +204,26 @@ clear i_dib A2 i_transform
 % end
 
 %% Create a knn classifier:
-% TODO bucles al revés. Arreglar
 aux_errors = zeros(10,2);
+
 for K_neig=1:10
     knnclass = fitcknn(X_train,Labels_train,'NumNeighbors',K_neig);
     knn_out = predict(knnclass,X_train);
     aux_errors(K_neig,1)=sum(Labels_train ~= knn_out)/length(Labels_train);
-    fprintf(1,' error knn train = %g   \n', aux_errors(K_neig,1))
+%     fprintf(1,' error knn train = %g   \n', aux_errors(K_neig,1))
     knn_out = predict(knnclass,X_test);
     aux_errors(K_neig,2)=sum(Labels_test ~= knn_out)/length(Labels_test);
-    fprintf(1,' error knn test = %g   \n', aux_errors(K_neig,2))
+%     fprintf(1,' error knn test = %g   \n', aux_errors(K_neig,2))
     % Test confusion matrix
     if i_CM==1
-        CM_knn_test=confusionmat(Labels_test,knn_out)
+        CM_knn_test=confusionmat(Labels_test,knn_out);
     end
 %     aux_errors(i,1), aux_errors(i,2)
     
-    [knn_Pe] = mean(aux_errors, 1);
+%     [knn_Pe] = mean(aux_errors, 1);
 end
 
+knn_Pe = aux_errors; % Matrix to be returned
 
 end
 
