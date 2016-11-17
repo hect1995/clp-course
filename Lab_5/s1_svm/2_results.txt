@@ -1,0 +1,51 @@
+Lineal
+	P=0.1
+
+Kernel
+	P=0.1
+	h=1
+
+========================
+
+Lab_analisis =
+
+     0
+
+
+N_train =
+
+        2760
+
+
+N_val =
+
+   920
+
+
+N_test =
+
+   920
+
+
+ Clasificador SVM lineal
+error train = 0.065942   
+error test = 0.0728261   
+
+  
+  
+CM_Linear_test =
+
+   554    37
+    30   299
+
+
+ Clasificador Kernel Gaussiano
+error train = 0.391304   
+error test = 0.348913   
+
+  
+  
+CM_Gauss_test =
+
+   591     0
+   321     8

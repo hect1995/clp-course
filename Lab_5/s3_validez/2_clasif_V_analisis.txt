@@ -1,0 +1,20 @@
+Clasificador Kernel Gaussiano
+
+V_analisis_pred =
+
+     0
+
+
+Pred_validity =
+
+     1
+
+
+Make =
+
+     1
+
+
+Address =
+
+     0

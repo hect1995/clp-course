@@ -1,0 +1,40 @@
+P_opt =
+
+    1.2100
+
+
+h_opt =
+
+    2.5000
+
+
+Lab_analisis =
+
+     0
+
+
+N_train =
+
+        2760
+
+
+N_val =
+
+   920
+
+
+N_test =
+
+   920
+
+
+ Clasificador Kernel Gaussiano
+error train = 0.0369565   
+error test = 0.0543478   
+
+  
+  
+CM_Gauss_test =
+
+   539    22
+    28   331

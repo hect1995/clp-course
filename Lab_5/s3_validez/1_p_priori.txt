@@ -1,0 +1,10 @@
+Las probabilidades a priori de las dos clases, después de clasificar son:
+
+P_mail =
+
+    0.6315
+
+
+P_spam =
+
+    0.3685

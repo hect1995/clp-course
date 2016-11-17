@@ -1,0 +1,5 @@
+En este caso, usar los cocientes P, S, Es y Fscore es más adecuado porque los errores al clasificar SPAM como MAIL serán escasos, ya que hay pocos ejemplos de SPAM, respecto de MAIL.
+
+Esto hará que este tipo de errores tenga poca relevancia respecto la clasificación de los ejemplos de MAIL.
+
+Los cocientes P, S, Es y Fscore valoran el comportamiento de la clasificación, fijándose en una clase cada vez, de manera que la proporción entre los ejemplos de una clase y otra no se tienen en cuenta.
