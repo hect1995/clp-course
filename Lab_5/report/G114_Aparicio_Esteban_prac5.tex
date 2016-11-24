@@ -126,11 +126,13 @@ El resultado de la ejecución inicial del programa, con $P=0.1$ y $h=1$, ha dado
 	\end{center}
 \end{table}
 
+Contrariamente a lo que se podría esperar, en esta situación, el clasificador lineal da un resultado notablemente superior al clasificador con kernel Gaussiano. Como se ve en la figura \ref{fig:svm:p_h_optimo}, en el caso de $P=0.1$ y $h=1$, la probabilidad de error es alta.
+
 Después de programar el doble bucle para obtener los valores de $P$ y $h$ óptimos, el gráfico bidimensional obtenido se muestra en la figura \ref{fig:svm:p_h_optimo}.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.6\textwidth]{../s1_svm/3_train_error.eps}
+	\includegraphics[width=0.47\textwidth]{../s1_svm/3_train_error.eps}
 	\caption[]{\small Representación del error de clasificación respecto de $h$ y $P$}
 	\label{fig:svm:p_h_optimo}
 \end{figure}
