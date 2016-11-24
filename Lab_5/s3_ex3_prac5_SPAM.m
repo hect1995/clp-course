@@ -1,5 +1,5 @@
 %% CLP
-% Práctica 5, BD: SPAM, Classifier: SV
+% Prï¿½ctica 5, BD: SPAM, Classifier: SV
 % April 2016, MC
 clear
 close all
@@ -17,8 +17,8 @@ X=dataspam(:,1:57);
 N_datos=length(Labs);
 
 % Load optimal parameters
-load('svm/ex3_P_h_opt.mat')
-
+load('s1_svm/ex3_P_h_opt.mat')
+load('s2_bondad/params.mat')
 P_opt
 h_opt
 
@@ -33,25 +33,25 @@ end
 drawnow
 clear i_plot
 
-%% Cuantificación binaria de características
+%% Cuantificaciï¿½n binaria de caracterï¿½sticas
 X=X(:,1:54);
 A=find(X>0);
 X(A)=ones(size(A));
 
-%% Generación BD Train (60 %), Cross Validation (20%) y BD Test (20%)
-%Aleatorización orden de los vectores
+%% Generaciï¿½n BD Train (60 %), Cross Validation (20%) y BD Test (20%)
+%Aleatorizaciï¿½n orden de los vectores
 indexperm=randperm(N_datos);
 X=X(indexperm,:);
 Labs=Labs(indexperm);
 
-% Identificación de un vector para cálculo de probabilidad:
+% Identificaciï¿½n de un vector para cï¿½lculo de probabilidad:
 V_analisis=X(N_datos,:);
 Lab_analisis=Labs(N_datos)
 N_datos=N_datos-1;
 X=X(1:N_datos,:);
 Labs=Labs(1:N_datos);
 
-% Generación BD Train, BD CV, BD Test
+% Generaciï¿½n BD Train, BD CV, BD Test
 N_train=round(0.6*N_datos)
 N_val=round(0.8*N_datos)-N_train
 N_test=N_datos-N_train-N_val
@@ -101,12 +101,27 @@ if i_gauss ==1
     % The V_analisis vector contains 'make' and 'address'?
     Make = V_analisis(1)
     Address = V_analisis(2)
+    
+    %% Validity analysis
+    load('s3_validez/Pmail_Pspam.mat')
 
 %% A Posteriori Probability
 %     P(B) = P_mail or P_spam
 %     P(A) => A priori prob depending on DB
 %     P(B|A) = S
 %     P(A|B) = P(B|A)*P(A)/P(B)
+
+    PBA = S
+    
+    if V_analisis_pred == 0 % Not SPAM
+        PA = sum(Labs_train == 0)/length(Labs_train)
+        PB = P_mail
+    elseif V_analisis_pred == 1 % SPAM
+        PA = sum(Labs_train == 1)/length(Labs_train)
+        PB = P_spam
+    end
+        
+    PAB = PBA*PA/PB
     %% Clear data
 %     clear Err_train Err_test Gauss_out
 end

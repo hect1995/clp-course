@@ -1,0 +1,42 @@
+Clasificador Kernel Gaussiano
+
+V_analisis_pred =
+
+     0
+
+
+Pred_validity =
+
+  logical
+
+   1
+
+
+Make =
+
+     0
+
+
+Address =
+
+     0
+
+
+PBA =
+
+    0.9348
+
+
+PA =
+
+    0.6014
+
+
+PB =
+
+    0.5848
+
+
+PAB =
+
+    0.9615

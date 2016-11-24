@@ -1,5 +1,5 @@
 %% CLP
-% Práctica 5, BD: SPAM, Classifier: SV
+% Prï¿½ctica 5, BD: SPAM, Classifier: SV
 % April 2016, MC
 clear
 close all
@@ -17,7 +17,7 @@ X=dataspam(:,1:57);
 N_datos=length(Labs);
 
 % Load optimal parameters
-load('svm/ex3_P_h_opt.mat')
+load('s1_svm/ex3_P_h_opt.mat')
 
 P_opt
 h_opt
@@ -33,25 +33,25 @@ end
 drawnow
 clear i_plot
 
-%% Cuantificación binaria de características
+%% Cuantificaciï¿½n binaria de caracterï¿½sticas
 X=X(:,1:54);
 A=find(X>0);
 X(A)=ones(size(A));
 
-%% Generación BD Train (60 %), Cross Validation (20%) y BD Test (20%)
-%Aleatorización orden de los vectores
+%% Generaciï¿½n BD Train (60 %), Cross Validation (20%) y BD Test (20%)
+%Aleatorizaciï¿½n orden de los vectores
 indexperm=randperm(N_datos);
 X=X(indexperm,:);
 Labs=Labs(indexperm);
 
-% Identificación de un vector para cálculo de probabilidad:
+% Identificaciï¿½n de un vector para cï¿½lculo de probabilidad:
 V_analisis=X(N_datos,:);
 Lab_analisis=Labs(N_datos)
 N_datos=N_datos-1;
 X=X(1:N_datos,:);
 Labs=Labs(1:N_datos);
 
-% Generación BD Train, BD CV, BD Test
+% Generaciï¿½n BD Train, BD CV, BD Test
 N_train=round(0.6*N_datos)
 N_val=round(0.8*N_datos)-N_train
 N_test=N_datos-N_train-N_val
@@ -115,6 +115,8 @@ if i_gauss ==1
     S = TP /(TP+FN)
     Es = TN/(TN+FP)
     Fscore = 2*(P*S)/(P+S)
+    
+    save('s2_bondad/params.mat', 'Ec', 'A', 'P', 'S', 'Es', 'Fscore')
     
     %% Clear data
     clear Err_train Err_test Gauss_out
