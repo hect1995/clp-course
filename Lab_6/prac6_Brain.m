@@ -4,7 +4,7 @@ clear
 close all
 clc 
 load PRBB_Brain
-i_dib=1;                     % 1 Dibuja las imágenes
+i_dib=0;                     % 1 Dibuja las imágenes
 i_clas_NN=1;                 % 1 Clasifica Imagen completa mediante NN
 i_clas_Tree=0;               % 1 Clasifica Imagen completa mediante Tree
 i_valida_hidden=0;           % 1 Valida número neuronas en capa oculta
@@ -26,7 +26,7 @@ for i1=1:N_images
     end
     Brain_8(:,i1)=Aux(:);
 end
-clear Vaux Aux N_images i1 Brain
+% clear Vaux Aux N_images i1 Brain
 %%  Se etiquetan los vectores (píxeles) utilizando las probabilidades de las clases (images 6,7,8)
 N_feat=5;
 Brain_5=Brain_8(:,1:N_feat);
@@ -53,9 +53,9 @@ if i_dib==1
     imagesc(Aux)
     axis image
     colorbar
-    clear Labeled_Image Aux class ind
+%     clear Labeled_Image Aux class ind
 end
-clear Brain_8 class ind i_dib
+% clear Brain_8 class ind i_dib
 
 %% BD
 % Eliminar excedentes de class=4 (Background')
@@ -128,8 +128,8 @@ if i_clas_NN==1
     net = patternnet(hiddenLayerSize);
     net.performFcn='mse';
     %net.trainFcn='trainscg';  % Conjugate gradient
-    net.trainFcn='traingd';   %Back Propagation
-    %net.trainFcn='trainlm';   %Levenberg-Marquadt
+%     net.trainFcn='traingd';   %Back Propagation
+    net.trainFcn='trainlm';   %Levenberg-Marquadt
     net = configure(net,Brain_Etiq',Target_BD);
     
     net.divideFcn='divideind'; % The database is divided by indices

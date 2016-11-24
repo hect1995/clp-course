@@ -1,0 +1,5 @@
+La elección de P_min determina la cantidad de píxeles que se marcan como no pertenecientes a ninguna clase. Estos píxeles se marcan como tales porque su probabilidad es menor a P_min.
+
+A medida que se aumenta P_min, aumenta el número de estos píxeles, aunque el resto de píxeles son más "fiables", ya que tienen mayor probabilidad.
+
+Por tanto, se debe encontrar un compromiso entre la fiabilidad de la decisión y el número de píxeles no clasificados.

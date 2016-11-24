@@ -1,0 +1,29 @@
+num_epoch = 1000
+actual epochas -> 32 epochs
+
+error NN train = 0.00124292   
+
+CM_Train =
+
+        2923           5           0           0
+           4         783           0           0
+           0           0        1715           0
+           0           0           0        1811
+
+ error NN val = 0.00207211   
+
+CM_Val =
+
+   971     4     1     0
+     0   263     0     0
+     0     0   571     0
+     0     0     0   603
+
+ error NN test = 0.00414422   
+
+CM_Test =
+
+   970     6     0     0
+     3   260     0     0
+     1     0   570     0
+     0     0     0   603
