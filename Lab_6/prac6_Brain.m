@@ -1,16 +1,16 @@
 
-%% PRÁCTICA 6, BD: Brain
+%% PRï¿½CTICA 6, BD: Brain
 clear
 close all
 clc
 load PRBB_Brain
-i_dib=0;                     % 1 Dibuja las imágenes
+i_dib=0;                     % 1 Dibuja las imï¿½genes
 i_clas_NN=0;                 % 1 Clasifica Imagen completa mediante NN
 i_clas_Tree=0;               % 1 Clasifica Imagen completa mediante Tree
-i_valida_hidden=0;           % 1 Valida número neuronas en capa oculta
-i_valida_split=0;            % 1 Valida número máximo de splits in trees
+i_valida_hidden=0;           % 1 Valida nï¿½mero neuronas en capa oculta
+i_valida_split=0;            % 1 Valida nï¿½mero mï¿½ximo de splits in trees
 rng('shuffle')
-%% Se dibujan opcionalmente las imágenes
+%% Se dibujan opcionalmente las imï¿½genes
 N_images=8;
 Ndim=256;
 N_datos=Ndim*Ndim;
@@ -27,24 +27,24 @@ for i1=1:N_images
     Brain_8(:,i1)=Aux(:);
 end
 % clear Vaux Aux N_images i1 Brain
-%%  Se etiquetan los vectores (píxeles) utilizando las probabilidades de las clases (images 6,7,8)
+%%  Se etiquetan los vectores (pï¿½xeles) utilizando las probabilidades de las clases (images 6,7,8)
 N_feat=5;
 Brain_5=Brain_8(:,1:N_feat);
 
-% Detección de píxeles de fondo 'clase 4'
+% Detecciï¿½n de pï¿½xeles de fondo 'clase 4'
 [class,ind]=max(Brain_8(:,6:8),[],2);
 Index_clase0=find(class==0);
 Brain_Etiq(1:length(Index_clase0),1:N_feat)=Brain_5(Index_clase0,1:N_feat);
 Labels(1:length(Index_clase0))=4*ones(length(Index_clase0),1);
 
-%Detección del resto de píxeles etiquetados
+%Detecciï¿½n del resto de pï¿½xeles etiquetados
 Pr_min=0.9;
 Index_Labels=find(class>=Pr_min);
 Brain_Etiq = [Brain_Etiq ; Brain_5(Index_Labels,1:N_feat)];
 Labels(length(Index_clase0)+1: length(Index_clase0)+length(Index_Labels))=ind(Index_Labels);
 %
 if i_dib==1
-    %Representación de BD Etiquetada.
+    %Representaciï¿½n de BD Etiquetada.
     Labeled_Image=zeros(N_feat,1);
     Labeled_Image(Index_clase0)=4;
     Labeled_Image(Index_Labels)=ind(Index_Labels);
@@ -77,12 +77,12 @@ Brain_Etiq=Brain_Etiq2;
 Labels=Labels2;
 clear Labels2 Brain_Etiq2 Index_clase0 Index_Labels %Index_NO_label
 
-%Aleatorización orden de los vectores
+%Aleatorizaciï¿½n orden de los vectores
 Permutation=randperm(length(Labels));
 Brain_Etiq=Brain_Etiq(Permutation,:);
 Labels=Labels(Permutation);
 
-%% Generación Índices de BD Train, BD Val, BD Test
+%% Generaciï¿½n ï¿½ndices de BD Train, BD Val, BD Test
 P_train=0.6;
 P_val=0.2;
 P_test=1-P_train-P_val;
@@ -107,7 +107,7 @@ Permutation=randperm(length(Index_test));
 Index_test=Index_test(Permutation);
 clear Permutation i_class index N_i_class I_train I_val I_test
 
-% Generación BD Train, BD CV, BD Test
+% Generaciï¿½n BD Train, BD CV, BD Test
 X_train=Brain_Etiq(Index_train,:);
 Labels_train=Labels(Index_train);
 X_val=Brain_Etiq(Index_val,:);
@@ -173,7 +173,7 @@ if i_clas_NN==1
 end
 clear i_clas_NN
 
-%% Validacion de número de neuronas en capa oculta
+%% Validacion de nï¿½mero de neuronas en capa oculta
 if i_valida_hidden==1;
     
     % TO DO
@@ -306,7 +306,7 @@ end
 % clear i_clas_Tree Ndim
 
 
-%% Validacion de número MÁXIMO DE SPLITS - Tree
+%% Validacion de nï¿½mero Mï¿½XIMO DE SPLITS - Tree
 if i_valida_split==1;
     
     % TO DO
