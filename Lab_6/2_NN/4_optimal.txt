@@ -1,0 +1,28 @@
+OptimalLayerSize = 14
+
+OPTIMAL error NN train = 0.00138102   
+
+CM_Train =
+
+        2926           2           0           0
+           8         779           0           0
+           0           0        1715           0
+           0           0           0        1811
+
+ OPTIMAL error NN val = 0.00414422   
+
+CM_Val =
+
+   971     5     0     0
+     5   258     0     0
+     0     0   571     0
+     0     0     0   603
+
+ OPTIMAL error NN test = 0.00248653   
+
+CM_Test =
+
+   971     5     0     0
+     1   262     0     0
+     0     0   571     0
+     0     0     0   603

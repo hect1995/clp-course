@@ -1,0 +1,93 @@
+error NN train = 0.000483559   
+
+CM_Train =
+
+        1699           3           0           0
+           1        2577           0           0
+           0           0        1923           0
+           0           0           0        2069
+
+ error NN val = 0.000362582   
+
+CM_Val =
+
+   568     0     0     0
+     0   860     0     0
+     1     0   640     0
+     0     0     0   689
+
+ error NN test = 0.00253807   
+
+CM_Test =
+
+   562     5     1     0
+     0   860     0     0
+     1     0   640     0
+     0     0     0   689
+
+
+Decision tree for classification
+ 1  if x1<71.5 then node 2 elseif x1>=71.5 then node 3 else 2
+ 2  if x1<3 then node 4 elseif x1>=3 then node 5 else 4
+ 3  if x1<72.5 then node 6 elseif x1>=72.5 then node 7 else 2
+ 4  class = 4
+ 5  if x1<44.5 then node 8 elseif x1>=44.5 then node 9 else 3
+ 6  if x5<31976.7 then node 10 elseif x5>=31976.7 then node 11 else 2
+ 7  if x1<96.5 then node 12 elseif x1>=96.5 then node 13 else 2
+ 8  class = 3
+ 9  if x2<168.5 then node 14 elseif x2>=168.5 then node 15 else 1
+10  class = 2
+11  class = 1
+12  if x5<11918 then node 16 elseif x5>=11918 then node 17 else 2
+13  class = 1
+14  if x1<69.5 then node 18 elseif x1>=69.5 then node 19 else 1
+15  class = 3
+16  class = 1
+17  if x1<73.5 then node 20 elseif x1>=73.5 then node 21 else 2
+18  class = 1
+19  if x5<20350.3 then node 22 elseif x5>=20350.3 then node 23 else 1
+20  if x5<34219.5 then node 24 elseif x5>=34219.5 then node 25 else 2
+21  if x5<36440.9 then node 26 elseif x5>=36440.9 then node 27 else 2
+22  if x5<14538.9 then node 28 elseif x5>=14538.9 then node 29 else 2
+23  class = 1
+24  class = 2
+25  class = 1
+26  class = 2
+27  if x5<36483.6 then node 30 elseif x5>=36483.6 then node 31 else 2
+28  class = 1
+29  class = 2
+30  class = 1
+31  class = 2
+
+
+------- TREE CLASSIFIER ------------------
+ error Tree train = 0.000483559   
+
+CM_Train =
+
+        1700           1           1           0
+           1        2577           0           0
+           1           0        1922           0
+           0           0           0        2069
+
+
+-------------------------
+ error Tree val = 0.00108774   
+
+CM_Val =
+
+   567     1     0     0
+     0   860     0     0
+     2     0   639     0
+     0     0     0   689
+
+
+-------------------------
+ error Tree test = 0.00362582   
+
+CM_Test =
+
+   560     8     0     0
+     1   859     0     0
+     1     0   640     0
+     0     0     0   689

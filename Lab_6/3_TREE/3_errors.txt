@@ -1,0 +1,84 @@
+-------------------------
+ Optimal Split Size = 25   
+
+Decision tree for classification
+ 1  if x1<40.5 then node 2 elseif x1>=40.5 then node 3 else 1
+ 2  if x1<2.5 then node 4 elseif x1>=2.5 then node 5 else 4
+ 3  if x1<70.5 then node 6 elseif x1>=70.5 then node 7 else 1
+ 4  class = 4
+ 5  class = 3
+ 6  if x1<67.5 then node 8 elseif x1>=67.5 then node 9 else 1
+ 7  if x1<87 then node 10 elseif x1>=87 then node 11 else 2
+ 8  if x1<41.5 then node 12 elseif x1>=41.5 then node 13 else 1
+ 9  if x3<90.5 then node 14 elseif x3>=90.5 then node 15 else 1
+10  if x3<96.5 then node 16 elseif x3>=96.5 then node 17 else 2
+11  class = 1
+12  class = 1
+13  if x1<66.5 then node 18 elseif x1>=66.5 then node 19 else 1
+14  if x4<166.5 then node 20 elseif x4>=166.5 then node 21 else 2
+15  if x5<21248 then node 22 elseif x5>=21248 then node 23 else 1
+16  if x5<13041.2 then node 24 elseif x5>=13041.2 then node 25 else 2
+17  if x1<73.5 then node 26 elseif x1>=73.5 then node 27 else 1
+18  if x1<43.5 then node 28 elseif x1>=43.5 then node 29 else 1
+19  if x3<85.5 then node 30 elseif x3>=85.5 then node 31 else 1
+20  class = 1
+21  if x3<87.5 then node 32 elseif x3>=87.5 then node 33 else 2
+22  class = 2
+23  if x2<67.5 then node 34 elseif x2>=67.5 then node 35 else 1
+24  class = 1
+25  class = 2
+26  if x5<22373.2 then node 36 elseif x5>=22373.2 then node 37 else 1
+27  if x5<13780.7 then node 38 elseif x5>=13780.7 then node 39 else 2
+28  if x5<19331.4 then node 40 elseif x5>=19331.4 then node 41 else 1
+29  class = 1
+30  if x4<179.5 then node 42 elseif x4>=179.5 then node 43 else 1
+31  class = 1
+32  class = 2
+33  if x2<72 then node 44 elseif x2>=72 then node 45 else 2
+34  if x3<94.5 then node 46 elseif x3>=94.5 then node 47 else 1
+35  class = 1
+36  class = 2
+37  class = 1
+38  class = 1
+39  class = 2
+40  class = 3
+41  class = 1
+42  class = 1
+43  class = 2
+44  class = 1
+45  class = 2
+46  class = 2
+47  class = 1
+
+
+------- TREE CLASSIFIER ------------------
+ error Tree train = 0.00276205   
+
+CM_Train =
+
+        2914          14           0           0
+           5         782           0           0
+           1           0        1714           0
+           0           0           0        1811
+
+
+-------------------------
+ error Tree val = 0.00414422   
+
+CM_Val =
+
+   968     7     1     0
+     2   261     0     0
+     0     0   571     0
+     0     0     0   603
+
+
+-------------------------
+ error Tree test = 0.00663075   
+
+CM_Test =
+
+   964    11     1     0
+     4   259     0     0
+     0     0   571     0
+     0     0     0   603

@@ -5,8 +5,8 @@ close all
 clc
 load PRBB_Brain
 i_dib=0;                     % 1 Dibuja las imágenes
-i_clas_NN=0;                 % 1 Clasifica Imagen completa mediante NN
-i_clas_Tree=0;               % 1 Clasifica Imagen completa mediante Tree
+i_clas_NN=1;                 % 1 Clasifica Imagen completa mediante NN
+i_clas_Tree=1;               % 1 Clasifica Imagen completa mediante Tree
 i_valida_hidden=0;           % 1 Valida número neuronas en capa oculta
 i_valida_split=0;            % 1 Valida número máximo de splits in trees
 rng('shuffle')
@@ -124,7 +124,7 @@ if i_clas_NN==1
     end
     clear i_element
     % Create a Pattern Recognition Network
-    hiddenLayerSize = 10;
+    hiddenLayerSize = 14;
     net = patternnet(hiddenLayerSize);
     net.performFcn='mse';
     %net.trainFcn='trainscg';  % Conjugate gradient
@@ -375,4 +375,23 @@ clear Index_train Index_val Index_test
 %% New image
 load PRBB_Brain2
 dataset= Brain(:,1:5);
+
+%% Tree Image
+outputs = predict(tree,dataset);
+    Aux=reshape(outputs,Ndim,Ndim);
+    figure('name',' Tree Classified Image Brain2')
+    imagesc(Aux)
+    axis image
+    colorbar
+    
+    %% NN
+    outputs = net(dataset');
+    [~, Index_out]=max(outputs);
+    Aux=reshape(Index_out,Ndim,Ndim);
+    figure('name','NN Classified Image Brain2')
+    imagesc(Aux)
+    axis image
+    colorbar
+    clear Index_out Aux
+   
 

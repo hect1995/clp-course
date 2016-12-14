@@ -124,7 +124,7 @@ if i_clas_NN==1
     end
     clear i_element
     % Create a Pattern Recognition Network
-    hiddenLayerSize = 10;
+    hiddenLayerSize = 14;
     net = patternnet(hiddenLayerSize);
     net.performFcn='mse';
     %net.trainFcn='trainscg';  % Conjugate gradient

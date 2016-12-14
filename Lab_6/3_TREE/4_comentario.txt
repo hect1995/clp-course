@@ -1,0 +1,1 @@
+La clasificación es más precisa con redes neuronales, aunque su entrenamiento sea más costoso computacionalmente y lento.
