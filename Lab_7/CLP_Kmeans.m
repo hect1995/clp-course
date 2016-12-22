@@ -35,10 +35,11 @@ end
 Sw= zeros(d,d);
 ni= zeros(1,K);
 for i = 1:length(DB)
-    Sw= Sw + (DB(1:d,i)-Centroides(:,Labels_new(i),end))*(DB(1:d,i)-Centroides(:,Labels_new(i),end))';
+    Sw= Sw + (DB(:,i)-Centroides(:,Labels_new(i),end))*(DB(:,i)-Centroides(:,Labels_new(i),end))';
     ni(Labels_new(i))= ni(Labels_new(i)) + 1;
 end
 
+Sb = zeros(d);
 for j=1:K
     m= (1/length(DB))*ni*Centroides(:,:,end)';
     Sb=Sb + ni(j)*(Centroides(:,j,end)-m)*(Centroides(:,j,end)-m)';

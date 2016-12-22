@@ -16,8 +16,8 @@ scatter(DB(1,:), DB(2,:)), hold on
 
 %% Classify with K-Means clustering
 K = 4;
-% [Centroides, Labels, n , J] = CLP_Kmeans(DB(1:d, :),K, d);
-[Centroides, Labels, n , J] = CLP_Kmeans(DB(1:end, :),K, d);
+[Centroides, Labels, n , J] = CLP_Kmeans(DB(1:d, :),K, d);
+% [Centroides, Labels, n , J] = CLP_Kmeans(DB(1:end, :),K, d);
 
 
 %% Plot results 
