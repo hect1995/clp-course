@@ -1,4 +1,4 @@
-function [Centroides, Labels_new, n, J, traca1, traca2] = CLP_Kmeans( DB, K, d)
+function [Centroides, Labels_new, n, J_ret, traca1, traca2, Sw, Sb] = CLP_Kmeans( DB, K, d)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -11,6 +11,7 @@ Centroides = datasample(DB, K, 2, 'Replace', false);
 Labels_new = zeros(length(DB), 1);
 n=0;
 
+% TODO change condition to a measure of the variation of J
 while ~isequal(Labels_new, Labels)
     Labels = Labels_new;
     n=n+1;
@@ -48,6 +49,5 @@ St= Sb+Sw;
 traca1= trace(St\Sw);
 traca2= trace(Sw\Sb);
 
-
-
+J_ret = J(end);
 end
