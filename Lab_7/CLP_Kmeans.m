@@ -19,14 +19,14 @@ while ~isequal(Labels_new, Labels) %iterate until no change in lavels
     % Classify database
     for i = 1:length(DB) 
         %norms = sqrt(sum(abs(repmat(DB(:,i), 1, K) - Centroides(:,:,end)).^2,1));
-        norms = sum(abs(repmat(DB(:,i), 1, K) - Centroides(:,:,end)).^2,1);
+        norms = sum(abs(repmat(double(DB(:,i)), 1, K) - double(Centroides(:,:,end))).^2,1);
         [Minim_value, Labels_new(i)] = min(norms);
         J(n)= Minim_value + J(n);
     end
     
     % Update centroids
     for i=1:K
-        Centroides(:, i, n) = mean(DB(:, Labels_new==i), 2);
+        Centroides(:, i, n) = mean(double(DB(:, Labels_new==i)), 2);
     end
     
     
