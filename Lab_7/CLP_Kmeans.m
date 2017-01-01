@@ -35,14 +35,14 @@ end
 Sw= zeros(d,d);
 ni= zeros(1,K);
 for i = 1:length(DB)
-    Sw= Sw + (DB(:,i)-Centroides(:,Labels_new(i),end))*(DB(:,i)-Centroides(:,Labels_new(i),end))';
-    ni(Labels_new(i))= ni(Labels_new(i)) + 1;
+    Sw= Sw + (double(DB(:,i))-double(Centroides(:,Labels_new(i),end)))*(double(DB(:,i))-double(Centroides(:,Labels_new(i),end)))';
+    ni(Labels_new(i))= ni(Labels_new(i)) + 1; %afageixes una mostra a aquella classe
 end
 
 Sb = zeros(d,d);
 for j=1:K
-    m= (1/length(DB))*ni*Centroides(:,:,end)';
-    Sb=Sb + ni(j)*(Centroides(:,j,end)-m)*(Centroides(:,j,end)-m)';
+    m= (1/length(DB))*ni*double(Centroides(:,:,end))';
+    Sb=Sb + ni(j)*(double(Centroides(:,j,end))-m')*(double(Centroides(:,j,end))-m')';
 end
 St= Sb+Sw;
 traca1= trace(St\Sw);

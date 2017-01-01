@@ -52,9 +52,9 @@ J_rgb = zeros(3,1);
 trace1_rgb = zeros(3,1);
 trace2_rgb = zeros(3,1);
 d= 3;
-K= 3;
-[Centroides_rgb, Labels_rgb, n_rgb , J_rgb(K), trace1_rgb(K), trace2_rgb(K), Sw_rgb(:,:,K-1), Sb_rgb(:,:,K-1)] = CLP_Kmeans(DB(1:d, :),K, d);
-
+K= 5;
+[Centroides_rgb, Labels_rgb, n_rgb , J_rgb(K), trace1_rgb(K), trace2_rgb(K), Sw_rgb(:,:,K-1), Sb_rgb(:,:,K-1)] = CLP_Kmeans(imatge_rgb(1:d, :),K, d);
+%la 1era columna es totes les dimensions del centroide del vermell
 
 
 %end
