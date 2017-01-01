@@ -1,4 +1,4 @@
-function [Centroides, Labels_new, n, J_ret, traca1, traca2, Sw, Sb] = CLP_Kmeans( DB, K, d)
+function [Centroides, Labels_new, n, J_ret, traca1, traca2, Sw, Sb] = CLP_Kmeans_lena( DB, K, d)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -48,6 +48,6 @@ St= Sb+Sw;
 traca1= trace(St\Sw);
 traca2= trace(Sw\Sb);
 
-J_ret = J(end);
-%J_ret = J;
+%J_ret = J(end);
+J_ret = J;
 end

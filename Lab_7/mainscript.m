@@ -42,24 +42,3 @@ for K=2:10
 %     end
 %     hold off
 end
-%% CUANTIFICAR IMATGE
-image= imread('lena.jpg');
-color1= reshape(image(:,:,1),1,[]);
-color2= reshape(image(:,:,2),1,[]);
-color3= reshape(image(:,:,3),1,[]);
-imatge_rgb= [color1 ; color2 ; color3 ];
-J_rgb = zeros(3,1);
-trace1_rgb = zeros(3,1);
-trace2_rgb = zeros(3,1);
-d= 3;
-K= 5;
-[Centroides_rgb, Labels_rgb, n_rgb , J_rgb, trace1_rgb, trace2_rgb, Sw_rgb(:,:,K-1), Sb_rgb(:,:,K-1)] = CLP_Kmeans(imatge_rgb(1:d, :),K, d);
-%la 1era columna es totes les dimensions del centroide del vermell
-
-figure;
-plot(1:length(J_rgb),J_rgb);
-title('Cost Function','FontSize',16);
-xlabel('Iteration','FontSize',14);
-ylabel('Cost','FontSize',14);
-grid on;
-%end
