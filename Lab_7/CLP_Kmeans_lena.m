@@ -28,8 +28,7 @@ while ~isequal(Labels_new, Labels) %iterate until no change in lavels
     for i=1:K
         Centroides(:, i, n) = mean(double(DB(:, Labels_new==i)), 2);
     end
-    
-    
+      
 end
 
 Sw= zeros(d,d);
