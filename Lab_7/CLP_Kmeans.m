@@ -48,5 +48,6 @@ St= Sb+Sw;
 traca1= trace(St\Sw);
 traca2= trace(Sw\Sb);
 
-J_ret = J(end);
+%J_ret = J(end);
+J_ret = J;
 end

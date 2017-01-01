@@ -53,8 +53,13 @@ trace1_rgb = zeros(3,1);
 trace2_rgb = zeros(3,1);
 d= 3;
 K= 5;
-[Centroides_rgb, Labels_rgb, n_rgb , J_rgb(K), trace1_rgb(K), trace2_rgb(K), Sw_rgb(:,:,K-1), Sb_rgb(:,:,K-1)] = CLP_Kmeans(imatge_rgb(1:d, :),K, d);
+[Centroides_rgb, Labels_rgb, n_rgb , J_rgb, trace1_rgb, trace2_rgb, Sw_rgb(:,:,K-1), Sb_rgb(:,:,K-1)] = CLP_Kmeans(imatge_rgb(1:d, :),K, d);
 %la 1era columna es totes les dimensions del centroide del vermell
 
-
+figure;
+plot(1:length(J_rgb),J_rgb);
+title('Cost Function','FontSize',16);
+xlabel('Iteration','FontSize',14);
+ylabel('Cost','FontSize',14);
+grid on;
 %end
