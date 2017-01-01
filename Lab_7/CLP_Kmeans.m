@@ -12,13 +12,12 @@ Labels_new = zeros(length(DB), 1);
 n=0;
 
 % TODO change condition to a measure of the variation of J
-while ~isequal(Labels_new, Labels)
+while ~isequal(Labels_new, Labels) %iterate until no change in lavels 
     Labels = Labels_new;
     n=n+1;
     J(n)= 0; %funcio cost
     % Classify database
-    for i = 1:length(DB)
-        
+    for i = 1:length(DB) 
         %norms = sqrt(sum(abs(repmat(DB(:,i), 1, K) - Centroides(:,:,end)).^2,1));
         norms = sum(abs(repmat(DB(:,i), 1, K) - Centroides(:,:,end)).^2,1);
         [Minim_value, Labels_new(i)] = min(norms);
@@ -40,7 +39,7 @@ for i = 1:length(DB)
     ni(Labels_new(i))= ni(Labels_new(i)) + 1;
 end
 
-Sb = zeros(d);
+Sb = zeros(d,d);
 for j=1:K
     m= (1/length(DB))*ni*Centroides(:,:,end)';
     Sb=Sb + ni(j)*(Centroides(:,j,end)-m)*(Centroides(:,j,end)-m)';
