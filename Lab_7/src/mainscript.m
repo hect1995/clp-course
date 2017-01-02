@@ -1,44 +1,52 @@
-%% Main script of the K-Means classifier
+%% Exercise 2.1 script of the K-Means classifier
 clear
 
-% Parameters
+%% Generate DB
+
+% Initialize parameters
 L = 4;
 N = 10000;
 d = 2;
 
-probabilitat = rand(L,1);
-probabilitat = probabilitat./sum(probabilitat);
+% Compute a priori probabilities for each cluster
+probabilities = rand(L,1);
+probabilities = probabilities./sum(probabilities);
 
-[DB, Nnew] = CLP_Generate(L,N,d,probabilitat);
+% Generate DB samples
+[DB, Nnew] = CLP_Generate(L,N,d,probabilities);
 
 % Draw clusters
 scatter(DB(1,:), DB(2,:))%, hold on
 
 %% Classify with K-Means clustering
-J = zeros(10,1);
-trace1 = zeros(10,1);
-trace2 = zeros(10,1);
+J = zeros(9,1);
+trace1 = zeros(9,1);
+trace2 = zeros(9,1);
 
 for K=2:10
-    [Centroides, Labels, n , J(K), trace1(K), trace2(K), Sw(:,:,K-1), Sb(:,:,K-1)] = CLP_Kmeans(DB(1:d, :),K, d);
-    % [Centroides, Labels, n , J] = CLP_Kmeans(DB(1:end, :),K, d);
+    [Centroides, Labels, n , J(K-1), trace1(K-1), trace2(K-1), ...
+        Sw(:,:,K-1), Sb(:,:,K-1)] = CLP_Kmeans(DB(1:d, :),K, d);    
     
-    
-    %% Plot results
-    % Plot the evolution of the centroids
-    % for i=1:K
-    %     c = rand(1,3);
-    %     scatter(Centroides(1,i,:), Centroides(2,i,:), 'x', 'MarkerEdgeColor', c/sum(c))
-    %     line(reshape(Centroides(1,i,:),[1,n]), reshape(Centroides(2,i,:),[1,n]), 'Color', c/sum(c))
-    % end
-    % hold off
-    
-%     % Plot DB with labeling
-%     figure, hold on
+%     % Plot evolution of the centroids
 %     for i=1:K
 %         c = rand(1,3);
-%         scatter(DB(1,Labels==i), DB(2,Labels==i), 'MarkerEdgeColor', c/sum(c))
-%         scatter(Centroides(1,i,:), Centroides(2,i,:), 'x', 'MarkerEdgeColor', 1 - c/sum(c))
+%         scatter(Centroides(1,i,:), Centroides(2,i,:), 'x', ...
+%             'MarkerEdgeColor', c/sum(c))
+%         line(reshape(Centroides(1,i,:),[1,n]), ...
+%             reshape(Centroides(2,i,:),[1,n]), 'Color', c/sum(c))
 %     end
 %     hold off
+    
+    % Plot DB with color labeling
+    figure, hold on
+    for i=1:K
+        c = rand(1,3);
+        scatter(DB(1,Labels==i), DB(2,Labels==i), ...
+            'MarkerEdgeColor', c/sum(c))
+        scatter(Centroides(1,i,:), Centroides(2,i,:), ...
+            'x', 'MarkerEdgeColor', 1 - c/sum(c))
+    end
 end
+
+figure
+semilogy(2:10, J), grid on

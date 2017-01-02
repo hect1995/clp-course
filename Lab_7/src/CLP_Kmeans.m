@@ -1,53 +1,91 @@
-function [Centroides, Labels_new, n, J_ret, traca1, traca2, Sw, Sb] = CLP_Kmeans( DB, K, d)
-%UNTITLED Summary of this function goes here
+function [ Centroids, Labels, n, J, tr_1, tr_2, Sw, Sb ] = CLP_Kmeans(DB, K, d)
+%CLP_Kmeans Classify matrix with a K-Means algorithm
+%
+%   [ Centroids, Labels, n, J, tr_1, tr_2, Sw, Sb ] = CLP_Kmeans(DB, K, d)
+%
 %   Detailed explanation goes here
 
 %% Initialize centroids and labels matrices
-Labels = ones(length(DB), 1);
+Labels_old = ones(length(DB), 1);
 
-Centroides = datasample(DB, K, 2, 'Replace', false);
+Centroids = datasample(DB, K, 2, 'Replace', false);
+% % Initialize centroids randomly
+% a = -5;
+% b = 5;
+% original_Centroids = a + (b-a).*rand(d, K);
+% Centroids = original_Centroids;
 
-%% Iterate classification
-Labels_new = zeros(length(DB), 1);
-n=0;
+%% Classify database
+threshold = 0.0005;
+
+Labels = zeros(length(DB), 1);
+n = 1;
+
+J_aux = zeros(50,1);
 
 % TODO change condition to a measure of the variation of J
-while ~isequal(Labels_new, Labels) %iterate until no change in lavels 
-    Labels = Labels_new;
-    n=n+1;
-    J(n)= 0; %funcio cost
+% while ~isequal(Labels, Labels_old) % Iterate until no change in lavels
+
+condition = n <= 2;
+
+% while (J_aux(n-1) - J_aux(n)) > threshold || n == 0
+while condition == 1
+    
+    Labels_old = Labels;
+
+    J_aux(n) = 0; % Cost function
+    
     % Classify database
-    for i = 1:length(DB) 
-        %norms = sqrt(sum(abs(repmat(DB(:,i), 1, K) - Centroides(:,:,end)).^2,1));
-        norms = sum(abs(repmat(double(DB(:,i)), 1, K) - double(Centroides(:,:,end))).^2,1);
-        [Minim_value, Labels_new(i)] = min(norms);
-        J(n)= Minim_value + J(n);
+    for i = 1:length(DB)
+        norms = sum(abs(repmat(...
+            double(DB(:,i)), 1, K) - double(Centroids(:,:,end))).^2,1);
+        [Minimum_value, Labels(i)] = min(norms);
+        J_aux(n) = Minimum_value + J_aux(n);
     end
     
     % Update centroids
-    for i=1:K
-        Centroides(:, i, n) = mean(double(DB(:, Labels_new==i)), 2);
+    for i = 1:K
+        Centroids(:, i, n) = mean(double(DB(:, Labels==i)), 2);
     end
     
+    if n > 1
+        diff = J_aux(n-1) - J_aux(n);
+        condition = (diff) > threshold;
+    end
     
+    n = n+1;
 end
 
-Sw= zeros(d,d);
-ni= zeros(1,K);
+% Take actual values of J_aux (eliminate the rests of preallocated data)
+J_aux = J_aux(1:n-1);
+
+%% Compute error metrics
+% Within-cluster scatter matrix
+Sw = zeros(d,d);
+ni = zeros(1,K);
+
 for i = 1:length(DB)
-    Sw= Sw + (double(DB(:,i))-double(Centroides(:,Labels_new(i),end)))*(double(DB(:,i))-double(Centroides(:,Labels_new(i),end)))';
-    ni(Labels_new(i))= ni(Labels_new(i)) + 1; %afageixes una mostra a aquella classe
+    Sw = Sw + (double(DB(:,i))-double(Centroids(:,Labels(i),end)))*...
+        (double(DB(:,i))-double(Centroids(:,Labels(i),end)))';
+    ni(Labels(i)) = ni(Labels(i)) + 1; % Add one sample to detected class
 end
 
+% Between-cluster scatter matrix
 Sb = zeros(d,d);
-for j=1:K
-    m= (1/length(DB))*ni*double(Centroides(:,:,end))';
-    Sb=Sb + ni(j)*(double(Centroides(:,j,end))-m')*(double(Centroides(:,j,end))-m')';
-end
-St= Sb+Sw;
-traca1= trace(St\Sw);
-traca2= trace(Sw\Sb);
 
-J_ret = J(end);
-%J_ret = J;
+for j = 1:K
+    m = (1/length(DB))*ni*double(Centroids(:,:,end))';
+    Sb = Sb + ni(j)*(double(Centroids(:,j,end))-m')*(double(Centroids(:,j,end))-m')';
+end
+
+% Total scatter matrix
+St = Sb+Sw;
+
+% Trace metrics
+tr_1 = trace(St\Sw);
+tr_2 = trace(Sw\Sb);
+
+% Take the J value of the last iteration
+J = J_aux(end);
+
 end
