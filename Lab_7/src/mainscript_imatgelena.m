@@ -110,5 +110,9 @@ end
 requantified_paco = uint8(reshape(vector_image_paco, size(imageclp2)));
 
 figure
-image(requantified_paco)
+imshow(imageclp2)
+title('Paco de Lucia''s original image','FontSize',16);
+
+figure
+imshow(requantified_paco)
 title('Paco de Lucia''s Quantified image with K= 7','FontSize',16);
