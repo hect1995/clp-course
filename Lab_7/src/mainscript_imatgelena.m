@@ -89,27 +89,26 @@ disp(['We need ', num2str(numero_bits_codificada), ...
 %% TODO: Fix Section 5
 % Import a different image and apply Lena's centroids
 
-% imageclp2 = imread('images/PacoLucia.jpg');
-% 
-% color1p = reshape(imageclp2(:,:,1),1,[]);
-% color2p = reshape(imageclp2(:,:,2),1,[]);
-% color3p = reshape(imageclp2(:,:,3),1,[]);
-% image_rgbp = [original_red ; original_green ; original_blue ];
-% 
-% vector_image_paco = zeros([1, size(image_rgbp')]);
-% 
-% for i = 1:length(vector_image_paco)
-%     norms = sum(abs(repmat(...
-%         double(image_rgbp(:,i)), 1, K) - double(Centroides_definitiu)).^2,1);
-%     [Minim_value, index] = min(norms);
-%     
-%     % Assign the RGB value of the closest centroid
-%     vector_image_paco(1,i,:) = Centroides_definitiu(:,index);
-% end
-% 
-% requantified_paco = uint8(reshape(vector_image_paco, size(imageclp2)));
-% 
-% figure
-% image(requantified_paco)
-% title('Paco de Lucia''s Quantified image with K= 7','FontSize',16);
-% % The image of Paco de Lucia gives a horrible result
+imageclp2 = imread('images/PacoLucia.jpg');
+
+original_red_p = reshape(imageclp2(:,:,1),1,[]);
+original_green_p = reshape(imageclp2(:,:,2),1,[]);
+original_blue_p = reshape(imageclp2(:,:,3),1,[]);
+image_rgbp = [original_red_p ; original_green_p ; original_blue_p ];
+
+vector_image_paco = zeros([1, size(image_rgbp')]);
+
+for i = 1:length(vector_image_paco)
+    norms = sum(abs(repmat(...
+        double(image_rgbp(:,i)), 1, K) - double(Centroides_definitiu)).^2,1);
+    [Minim_value, index] = min(norms);
+    
+    % Assign the RGB value of the closest centroid
+    vector_image_paco(1,i,:) = Centroides_definitiu(:,index);
+end
+
+requantified_paco = uint8(reshape(vector_image_paco, size(imageclp2)));
+
+figure
+image(requantified_paco)
+title('Paco de Lucia''s Quantified image with K= 7','FontSize',16);
