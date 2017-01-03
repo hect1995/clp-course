@@ -1,7 +1,8 @@
 %% Exercise 2.1 script of the K-Means classifier
 clear
 
-%% Generate DB
+%% Section 1
+% Generate DB
 
 % Initialize parameters
 L = 4;
@@ -18,7 +19,8 @@ probabilities = probabilities./sum(probabilities);
 % Draw clusters
 scatter(DB(1,:), DB(2,:))%, hold on
 
-%% Classify with K-Means clustering
+%% Section 3
+% Classify with K-Means clustering
 J = zeros(9,1);
 trace1 = zeros(9,1);
 trace2 = zeros(9,1);
@@ -36,7 +38,7 @@ for K=2:10
 %             reshape(Centroides(2,i,:),[1,n]), 'Color', c/sum(c))
 %     end
 %     hold off
-    
+
     % Plot DB with color labeling
     figure, hold on
     for i=1:K
@@ -50,3 +52,6 @@ end
 
 figure
 semilogy(2:10, J), grid on
+
+%% TODO Section 4
+% Analyze classification metrics
