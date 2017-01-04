@@ -19,7 +19,7 @@ probabilities = probabilities./sum(probabilities);
 % Draw clusters
 scatter(DB(1,:), DB(2,:))%, hold on
 
-%% Section 3
+%% TODO: Fix Section 3 to catch all J values from CLP_Kmeans 
 % Classify with K-Means clustering
 J = zeros(9,1);
 trace1 = zeros(9,1);

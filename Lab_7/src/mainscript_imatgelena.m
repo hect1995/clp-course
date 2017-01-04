@@ -17,7 +17,7 @@ K= 7; % Compute 7 centroids
 
 % 1st centroids column represents all dimensions of red's centroids
 [Centroids_rgb, Labels_rgb, n_rgb , J_rgb, trace1_rgb, trace2_rgb, ...
-    Sw_rgb(:,:,K-1), Sb_rgb(:,:,K-1)] = CLP_Kmeans_lena(image_rgb(1:d, :),K,d);
+    Sw_rgb(:,:,K-1), Sb_rgb(:,:,K-1)] = CLP_Kmeans(image_rgb(1:d, :),K,d);
 
 % Reconstruct re-quantified image
 
@@ -41,6 +41,7 @@ requantified_lena = uint8(reshape(vector_image, size(imageclp)));
 %% Section 2
 % Represent the separate components of the original and re-quantified image
 
+% TODO Plot these images in subplots
 % Original image
 figure, imshow(imageclp),        title('Original image')
 figure, imshow(imageclp(:,:,1)), title('Original Red channel')
@@ -54,6 +55,7 @@ figure, imshow(requantified_lena(:,:,2)), title('Re-quantified Green channel')
 figure, imshow(requantified_lena(:,:,3)), title('Re-quantified Blue channel')
 
 % Show clusters of original image
+% TODO plot these clusters in a subplot
 figure
 scatter3(original_red, original_green, original_blue, 10, Labels_rgb)
 title('Clusters of original image')
@@ -109,6 +111,7 @@ end
 
 requantified_paco = uint8(reshape(vector_image_paco, size(imageclp2)));
 
+% TODO Plot these images in a subplot
 figure
 imshow(imageclp2)
 title('Paco de Lucia''s original image','FontSize',16);
