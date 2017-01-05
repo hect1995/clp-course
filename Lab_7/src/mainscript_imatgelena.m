@@ -15,10 +15,11 @@ image_rgb = [original_red ; original_green ; original_blue ];
 
 d = 3; % RGB represents 3 dimensions
 K = 7; % Compute 7 centroids
+th = 0.0005; % Variation threshold for the classifier
 
 % 1st centroids column represents all dimensions of red's centroids
 [Centroids_rgb, Labels_rgb, n_rgb , J_rgb, trace1_rgb, trace2_rgb, ...
-    Sw_rgb(:,:,K-1), Sb_rgb(:,:,K-1)] = CLP_Kmeans(image_rgb(1:d, :),K,d);
+    Sw_rgb(:,:,K-1), Sb_rgb(:,:,K-1)] = CLP_Kmeans(image_rgb(1:d, :),K,d,th);
 
 % Reconstruct re-quantified image
 

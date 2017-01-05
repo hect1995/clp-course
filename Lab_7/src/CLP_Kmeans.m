@@ -1,4 +1,4 @@
-function [ Centroids, Labels, n, J, tr_1, tr_2, Sw, Sb ] = CLP_Kmeans(DB, K, d)
+function [Centroids, Labels, n, J, tr1, tr2, Sw, Sb] = CLP_Kmeans(DB, K, d, th)
 %CLP_Kmeans Classify matrix with a K-Means algorithm
 %
 %   [ Centroids, Labels, n, J, tr_1, tr_2, Sw, Sb ] = CLP_Kmeans(DB, K, d)
@@ -10,7 +10,7 @@ function [ Centroids, Labels, n, J, tr_1, tr_2, Sw, Sb ] = CLP_Kmeans(DB, K, d)
 Centroids = datasample(DB, K, 2, 'Replace', false);
 
 %% Classify database
-threshold = 0.0005;
+% threshold = 0.0005;
 
 Labels = zeros(length(DB), 1);
 n = 1;
@@ -39,7 +39,7 @@ while condition == 1
     
     if n > 1
         diff = J(n-1) - J(n);
-        condition = (diff) > threshold;
+        condition = (diff) > th;
     end
     
     n = n+1;
@@ -71,7 +71,7 @@ end
 St = Sb+Sw;
 
 % Trace metrics
-tr_1 = trace(St\Sw);
-tr_2 = trace(Sw\Sb);
+tr1 = trace(St\Sw);
+tr2 = trace(Sw\Sb);
 
 end

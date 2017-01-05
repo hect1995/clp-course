@@ -12,6 +12,7 @@ plot_clusters = 1;
 L = 4;
 N = 10000;
 d = 2;
+th = 0.0005;
 
 % Compute a priori probabilities for each cluster
 probabilities = rand(L,1);
@@ -38,7 +39,7 @@ Sb = zeros(2,2,9);
 
 for K=2:10
     [Centroides, Labels, n , J{K-1}, trace1(K-1), trace2(K-1), ...
-        Sw(:,:,K-1), Sb(:,:,K-1)] = CLP_Kmeans(DB(1:d, :),K, d);
+        Sw(:,:,K-1), Sb(:,:,K-1)] = CLP_Kmeans(DB(1:d, :),K, d, th);
     
     minimized_J(K-1) = J{K-1}(end);
     
