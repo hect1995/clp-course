@@ -35,7 +35,8 @@ if plot_clusters
     hold on
     for i=1:K
         scatter(DB(1,Labels==i), DB(2,Labels==i), ...
-            'MarkerEdgeColor', c(i,:)/sum(c(i,:)))
+            'MarkerEdgeColor', c(i,:)/sum(c(i,:)),...
+            'MarkerFaceColor', c(i,:)/sum(c(i,:)))
         scatter(Centroids(1,i,:), Centroids(2,i,:), ...
             'x', 'MarkerEdgeColor', 1 - c(i,:)/sum(c(i,:)))
     end
@@ -49,7 +50,8 @@ if plot_clusters
     hold on
     for i=1:K
         scatter(DB(3,Labels==i), DB(4,Labels==i), ...
-            'MarkerEdgeColor', c(i,:)/sum(c(i,:)))
+            'MarkerEdgeColor', c(i,:)/sum(c(i,:)),...
+            'MarkerFaceColor', c(i,:)/sum(c(i,:)))
         scatter(Centroids(3,i,:), Centroids(4,i,:), ...
             'x', 'MarkerEdgeColor', 1 - c(i,:)/sum(c(i,:)))
     end
