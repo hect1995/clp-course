@@ -76,16 +76,17 @@ scatter3(vector_image(:,:,1), vector_image(:,:,2), vector_image(:,:,3), ...
     10, Labels_rgb)
 title('Clusters of re-quantified image')
 
-%% TODO: Finish Section 3
-% Display the evolution of the cost function
+%% Section 3
+% Display the evolution of the metrics
 
+% Display evolution of the cost function
 figure, plot(1:length(J_rgb),J_rgb), hold on
 title('Cost Function','FontSize',16)
 xlabel('Iteration','FontSize',14)
 ylabel('Cost','FontSize',14)
 grid on, hold off
 
-% TODO: queda la part de les funcions de matrius de traça
+% Display the results of the trace metrics
 disp(['La medida de tr(St\Sw) es: ', num2str(trace1_rgb)])
 disp(['La medida de tr(Sw\Sb) es: ', num2str(trace2_rgb)])
 
@@ -123,7 +124,7 @@ end
 
 requantified_paco = uint8(reshape(vector_image_paco, size(imageclp2)));
 
-% TODO Plot these images in a subplot
+% Plot result of classifying another image with the previous centroids
 figure
 subplot(1,2,1)
 imshow(imageclp2)

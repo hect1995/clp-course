@@ -1,14 +1,16 @@
-%% Exercise 2.3
+%% Exercise 2.3 script of the K-Means classifier
 % Classify a new database
 
+close all
 clear
+
 heatmap = 1;
 plot_clusters = 1;
 
 %% Parse Iris database
 
 file_path = 'db/bezdekIris.data';
-[ DB, db_labels ] = parse_db( file_path );
+[ DB, db_labels ] = CLP_Parse_DB( file_path );
 
 d = size(DB, 1);
 

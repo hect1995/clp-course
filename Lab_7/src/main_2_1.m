@@ -11,7 +11,7 @@ plot_clusters = 1;
 % Initialize parameters
 L = 4;
 N = 10000;
-d = 2;
+d = 3;
 th = 0.0005;
 
 % Compute a priori probabilities for each cluster
@@ -22,7 +22,7 @@ probabilities = probabilities./sum(probabilities);
 [DB, Nnew] = CLP_Generate(L,N,d,probabilities);
 
 % Draw clusters
-scatter(DB(1,:), DB(2,:))%, hold on
+scatter3(DB(1,:), DB(2,:), DB(3,:))%, hold on
 
 %% Section 3
 % Classify with K-Means clustering
@@ -34,8 +34,8 @@ minimized_J = zeros(9,1);
 trace1 = zeros(9,1);
 trace2 = zeros(9,1);
 
-Sw = zeros(2,2,9);
-Sb = zeros(2,2,9);
+Sw = zeros(d,d,9);
+Sb = zeros(d,d,9);
 
 for K=2:10
     [Centroides, Labels, n , J{K-1}, trace1(K-1), trace2(K-1), ...
@@ -48,9 +48,9 @@ for K=2:10
         figure, hold on
         for i=1:K
             c = rand(1,3);
-            scatter(DB(1,Labels==i), DB(2,Labels==i), ...
+            scatter3(DB(1,Labels==i), DB(2,Labels==i), DB(3,Labels==i), ...
                 'MarkerEdgeColor', c/sum(c))
-            scatter(Centroides(1,i,:), Centroides(2,i,:), ...
+            scatter3(Centroides(1,i,:), Centroides(2,i,:), Centroides(3,i,:),...
                 'x', 'MarkerEdgeColor', 1 - c/sum(c))
         end
     end

@@ -1,4 +1,4 @@
-function [ database, labels ] = parse_db( file_path )
+function [ database, labels ] = CLP_Parse_DB( file_path )
 %PARSE_DB Summary of this function goes here
 %   Detailed explanation goes here
 
