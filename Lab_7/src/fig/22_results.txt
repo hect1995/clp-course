@@ -1,0 +1,5 @@
+>> main_2_2
+La medida de tr(St\Sw) es: 1.42
+La medida de tr(Sw\Sb) es: 37.7702
+We need 6291456 bits to store the Lena image
+We need 3145728 bits to store the quantified image
