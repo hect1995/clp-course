@@ -53,6 +53,8 @@ for K=2:10
             scatter3(Centroides(1,i,:), Centroides(2,i,:), Centroides(3,i,:),...
                 'x', 'MarkerEdgeColor', 1 - c/sum(c))
         end
+        grid on
+        hold off
     end
 end
 
