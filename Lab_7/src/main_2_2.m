@@ -126,9 +126,11 @@ requantified_paco = uint8(reshape(vector_image_paco, size(imageclp2)));
 
 % Plot result of classifying another image with the previous centroids
 figure
-subplot(1,2,1)
+% subplot(1,2,1)
 imshow(imageclp2)
 title('Paco de Lucia''s original image','FontSize',16);
-subplot(1,2,2)
+
+figure
+% subplot(1,2,2)
 imshow(requantified_paco)
 title(['Paco de Lucia''s Quantified image with K=', num2str(K)],'FontSize',16);
