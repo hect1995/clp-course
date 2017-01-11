@@ -2,6 +2,7 @@
 *.fdb_latexmk
 *.fls
 *.log
+*.out
 *.synctex.gz
 
 *eps-converted-to.pdf

@@ -33,7 +33,7 @@ if plot_clusters
     c = rand(K,3); % Use the same colours for the two figures
     
     figure
-    subplot(2,2,1)
+%     subplot(2,2,1)
     hold on
     for i=1:K
         scatter(DB(1,Labels==i), DB(2,Labels==i), ...
@@ -48,7 +48,8 @@ if plot_clusters
     ylabel('Sepal width (cm)')
     hold off
     
-    subplot(2,2,2)
+    figure
+%     subplot(2,2,2)
     hold on
     for i=1:K
         scatter(DB(3,Labels==i), DB(4,Labels==i), ...
@@ -67,14 +68,16 @@ end
 % Display accuracy of the classification as heatmaps
 if heatmap
     % Colormap of database labels
-    subplot(2,2,3)
+    figure
+%     subplot(2,2,3)
     colormap('hot')
     imagesc(db_labels * db_labels')
     colorbar
     title('Database labels heatmap')
     
     % Colormap of classifier labels
-    subplot(2,2,4)
+    figure
+%     subplot(2,2,4)
     colormap('hot')
     imagesc(Labels * Labels')
     colorbar

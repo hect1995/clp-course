@@ -37,6 +37,16 @@
 \usepackage{amsmath}
 \usepackage{pdfpages}
 % These packages are all incorporated in the memoir class to one degree or another...
+%\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
+
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
 
 %%% HEADERS & FOOTERS
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
@@ -62,10 +72,10 @@
 
 \title{CLP Lab 7 Report}
 \author{Albert Aparicio Isarn\\
-	\url{albert.aparicio.isarn@alu-etsetb.upc.edu}
+        \href{mailto:albert.aparicio.isarn@alu-etsetb.upc.edu}{\nolinkurl{albert.aparicio.isarn@alu-etsetb.upc.edu} }
 	\and
 	Héctor Esteban Cabezos\\
-	\url{hect.esteban@gmail.com}}
+        \href{mailto:hect.esteban@gmail.com}{\nolinkurl{hect.esteban@gmail.com}}}
 \date{} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed
 
@@ -304,6 +314,103 @@ muestran en la figura \ref{fig:22:paco}.
 
 \section{Identificación de clústeres en una base de datos propia}
 
+El script \textbf{\texttt{main\_2\_3}} contiene el código del ejercicio 3. En
+la sección \ref{src:main:23} se puede ver su código fuente.
+
+Para este ejercicio se ha usado la base de datos \textbf{Iris Plants Database}
+(\url{http://archive.ics.uci.edu/ml/datasets/Iris}). Esta base de
+datos contiene información de la longitud y anchura de los sépalos y pétalos de
+varias espécies de flores del género \emph{Iris}.
+
+En la descripción de la base de datos se especifica que los 150 vectores están
+distribuidos en 3 clases. Una de ellas es linealmente separable de las otras
+dos, mientras que las otras dos restantes, \emph{NO} son linealmente separables.
+
+En la figura \ref{fig:23:scatter} se pueden ver los \emph{clusters}
+clasificados. Claramente se muestra una clase separada de las otras dos.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.435\textwidth}
+        \includegraphics[width=\textwidth]{../src/fig/23_sepal.eps}
+        \caption[]{\emph{Clusters} de las características de los sépalos}
+        \label{fig:23:scatter:sepals}
+    \end{subfigure}
+    \quad
+    %\vskip\baselineskip
+    \begin{subfigure}[b]{0.435\textwidth}
+        \includegraphics[width=\textwidth]{../src/fig/23_petal.eps}
+        \caption[]{\emph{Clusters} de las características de los pétalos}
+        \label{fig:23:scatter:petals}
+    \end{subfigure}
+    %\quad
+    \caption{Resultado de la clasificación de la base de datos
+             \textbf{Iris Plants Database}}
+     \label{fig:23:scatter}
+\end{figure}
+
+Para evaluar el rendimiento del clasificador, como esta base de datos es
+etiquetada, podemos comprobar el índice de aciertos. Sin embargo, esto no es una
+tarea simple.
+
+El problema radica en que los centroides del clasificador se asignan
+aleatoriamente. Esto hace que no podamos saber qué especie de \emph{Iris}
+corresponde a cada centroide. Por tanto, no podemos medir cuántos vectores han
+sido clasificados correctamente comparando las etiquetas.
+
+Para poder evaluar el rendimiento del clasificador, hemos aplicado un producto
+matricial sobre el vector de etiquetas resultante de la clasificación, y lo
+hemos representado con un código de colores. La figura \ref{fig:23:heatmap} muestra esta
+representación.
+
+Esta forma de mostrar las etiquetas permite una evaluación visual aproximada de
+cuán bien trabaja el clasificador. La lógica tras esta representación es:
+
+\begin{itemize}
+    \item Si todas las etiquetas se detectan correctamente, la figura resultante
+        mostrará 9 ($3^2$) rectángulos de distintos colores, segun el código elegido.
+    \item Si hay vectores mal clasificados, éstos se mostrarán en el gráfico en
+        forma de líneas de distinto color al del rectángulo en el que deberian
+        pertenecer.
+\end{itemize}
+
+Esta forma de evaluar la clasificación funciona porque en la base de datos, los
+vectores están ordenados de tal manera que los vectores de una misma clase
+ocupan posiciones correlativas.
+
+En la figura \ref{fig:23:heatmap:db} se muestran las etiquetas de la base de
+datos. Este gráfico muestra los 9 rectángulos perfectos. En la figura
+\ref{fig:23:heatmap:kmeans} se muestran las etiquetas de la clasificación. Como
+indicábamos anteriormente, hay líneas de distinto color al rectángulo que las
+rodea, indicando vectores mal clasificados.
+
+El rectángulo de la parte superior izquierda de la figura representa la clase
+linealmente separable de las otras dos, ya que solo muestra un solo vector mal
+clasificado.
+
+Los colores no se corresponden entre los dos gráficos, debido a la asignación
+aleatoria de los centroides mencionada anteriormente.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.435\textwidth}
+        \includegraphics[width=\textwidth]{../src/fig/23_db_heatmap.eps}
+        \caption[]{Etiquetas de la base de datos}
+        \label{fig:23:heatmap:db}
+    \end{subfigure}
+    \quad
+    %\vskip\baselineskip
+    \begin{subfigure}[b]{0.435\textwidth}
+        \includegraphics[width=\textwidth]{../src/fig/23_kmeans_heatmap.eps}
+        \caption[]{Etiquetas resultado de la clasificación}
+        \label{fig:23:heatmap:kmeans}
+    \end{subfigure}
+    %\quad
+    \caption{Representación de las etiquetas de la base de datos y de la
+        clasificación.}
+     \label{fig:23:heatmap}
+\end{figure}
+
 \clearpage
 
 \section{Código fuente}
@@ -322,10 +429,21 @@ este laboratorio
 
 \lstinputlisting{../src/main_2_2.m}
 
+\clearpage
+
+\subsection{\texttt{main\_2\_3}}
+\label{src:main:23}
+
+\lstinputlisting{../src/main_2_3.m}
+
+\clearpage
+
 \subsection{\texttt{CLP\_Generate}}
 \label{src:fun:generate}
 
 \lstinputlisting{../src/CLP_Generate.m}
+
+\clearpage
 
 \subsection{\texttt{CLP\_Kmeans}}
 \label{src:fun:kmeans}
