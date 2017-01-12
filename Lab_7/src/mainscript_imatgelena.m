@@ -84,6 +84,22 @@ xlabel('Iteration','FontSize',14)
 ylabel('Cost','FontSize',14)
 grid on, hold off
 
+%% MODIFICAT H…CTOR
+figure,
+plot (1:length(trace1_rgb),trace1_rgb);
+title('Trace to minimize','FontSize',16)
+xlabel('Iteration','FontSize',14)
+%ylabel('','FontSize',14)
+grid on
+
+figure,
+plot (1:length(trace2_rgb),trace2_rgb);
+title('Trace to maximize','FontSize',16)
+xlabel('Iteration','FontSize',14)
+%ylabel('','FontSize',14)
+grid on
+
+
 % TODO: queda la part de les funcions de matrius de tra√ßa
 disp(['La medida de tr(St\Sw) es: ', num2str(trace1_rgb)])
 disp(['La medida de tr(Sw\Sb) es: ', num2str(trace2_rgb)])
