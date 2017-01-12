@@ -15,10 +15,11 @@ image_rgb = [original_red ; original_green ; original_blue ];
 
 d = 3; % RGB represents 3 dimensions
 K = 7; % Compute 7 centroids
+th = 0.0005; % Variation threshold for the classifier
 
 % 1st centroids column represents all dimensions of red's centroids
 [Centroids_rgb, Labels_rgb, n_rgb , J_rgb, trace1_rgb, trace2_rgb, ...
-    Sw_rgb(:,:,K-1), Sb_rgb(:,:,K-1)] = CLP_Kmeans(image_rgb(1:d, :),K,d);
+    Sw_rgb(:,:,K-1), Sb_rgb(:,:,K-1)] = CLP_Kmeans(image_rgb(1:d, :),K,d,th);
 
 % Reconstruct re-quantified image
 
@@ -75,9 +76,10 @@ scatter3(vector_image(:,:,1), vector_image(:,:,2), vector_image(:,:,3), ...
     10, Labels_rgb)
 title('Clusters of re-quantified image')
 
-%% TODO: Finish Section 3
-% Display the evolution of the cost function
+%% Section 3
+% Display the evolution of the metrics
 
+% Display evolution of the cost function
 figure, plot(1:length(J_rgb),J_rgb), hold on
 title('Cost Function','FontSize',16)
 xlabel('Iteration','FontSize',14)
@@ -101,8 +103,9 @@ grid on
 
 
 % TODO: queda la part de les funcions de matrius de tra√ßa
-disp(['La medida de tr(St\Sw) es: ', num2str(trace1_rgb)])
-disp(['La medida de tr(Sw\Sb) es: ', num2str(trace2_rgb)])
+% Display the results of the trace metrics
+% disp(['La medida de tr(St\Sw) es: ', num2str(trace1_rgb)]) %% ELIMINAT PER H…CTOR
+% disp(['La medida de tr(Sw\Sb) es: ', num2str(trace2_rgb)])
 
 %% Section 4
 % Evaluate how many bits we need to store the original and re-quantified images
@@ -138,11 +141,13 @@ end
 
 requantified_paco = uint8(reshape(vector_image_paco, size(imageclp2)));
 
-% TODO Plot these images in a subplot
+% Plot result of classifying another image with the previous centroids
 figure
-subplot(1,2,1)
+% subplot(1,2,1)
 imshow(imageclp2)
 title('Paco de Lucia''s original image','FontSize',16);
-subplot(1,2,2)
+
+figure
+% subplot(1,2,2)
 imshow(requantified_paco)
 title(['Paco de Lucia''s Quantified image with K=', num2str(K)],'FontSize',16);

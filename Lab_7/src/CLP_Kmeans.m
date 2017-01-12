@@ -1,4 +1,4 @@
-function [ Centroids, Labels, n, J, tr_1, tr_2, Sw, Sb ] = CLP_Kmeans(DB, K, d)
+function [Centroids, Labels, n, J, tr1, tr2, Sw, Sb] = CLP_Kmeans(DB, K, d, th)
 %CLP_Kmeans Classify matrix with a K-Means algorithm
 %
 %   [ Centroids, Labels, n, J, tr_1, tr_2, Sw, Sb ] = CLP_Kmeans(DB, K, d)
@@ -15,7 +15,7 @@ Sw = zeros(d,d); %afegit Héctor
 ni = zeros(1,K); %afegit Héctor
 Sb = zeros(d,d); %afegit Héctor % Between-cluster scatter matrix
 %% Classify database
-threshold = 0.0005;
+% threshold = 0.0005;
 
 Labels = zeros(length(DB), 1);
 n = 1;
@@ -47,7 +47,7 @@ while condition == 1
     
     if n > 1
         diff = J(n-1) - J(n);
-        condition = (diff) > threshold;
+        condition = (diff) > th;
     end
     
     %% Part Héctor
@@ -75,7 +75,8 @@ end
 
 % Take actual values of J,tr_1 and tr_2 (eliminate the rests of preallocated data)
 J = J(1:n-1);
-tr_1 = tr_1(1:n-1);
-tr_2 = tr_2(1:n-1); 
+tr1 = tr_1(1:n-1);
+tr2 = tr_2(1:n-1); 
+
 
 end
