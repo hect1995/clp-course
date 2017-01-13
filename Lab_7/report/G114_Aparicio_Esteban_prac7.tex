@@ -269,21 +269,58 @@ Las iteraciones siguientes se han calculado para cumplir con la condición del
 clasificador, que dicta que se continue iterando hasta
 que $\Delta J \leq th = 0.0005$.
 
-Los valores de $Trace \left( S_T^{-1} S_W \right)$ y
-$Trace \left( S_W^{-1} S_B \right)$, junto al cálculo de los bits necesarios
-para el almacenamiento de las imágenes, son los siguientes:
+La evolución de los valores de $Trace \left( S_T^{-1} S_W \right)$ y
+$Trace \left( S_W^{-1} S_B \right)$ se muestra en la figura \ref{fig:22:traces}.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.435\textwidth}
+        \includegraphics[width=\textwidth]{../src/fig/22_trace1.eps}
+        \caption[]{Evolución de $Trace \left( S_T^{-1} S_W \right)$}
+        \label{fig:22:trace:1}
+    \end{subfigure}
+    \quad
+    %\vskip\baselineskip
+    \begin{subfigure}[b]{0.435\textwidth}
+        \includegraphics[width=\textwidth]{../src/fig/22_trace2.eps}
+        \caption[]{Evolución de $Trace \left( S_W^{-1} S_B \right)$}
+        \label{fig:22:trace:2}
+    \end{subfigure}
+    %\quad
+    \caption{Evolución de las métricas de Traza según cada interación del
+    clasificador \emph{K-Means}}
+    \label{fig:22:traces}
+\end{figure}
+
+Estos valores concuerdan con la optimización de la clasificación; tenemos un
+valor que disminuye, para $Trace \left( S_T^{-1} S_W \right)$, y un valor que
+incrementa, para $Trace \left( S_W^{-1} S_B \right)$.
+
+Como se muestra en \cite{zanibbi_clustering_2010} (página 22) las expresiones de
+los cálculos de traza corresponden a las ecuaciones \eqref{eq:trace:2} y
+\eqref{eq:trace:1}, donde $\lambda_i$ representa el valor propio de la matriz
+\emph{''within-cluster scatter''} ($S_W$).
+
+\begin{align}
+    \label{eq:trace:2}
+    trace \left[ S_W^{-1} S_B \right] &= \sum_{i=1}^{d} \lambda_i \\
+    \label{eq:trace:1}
+    trace \left[ S_T^{-1} S_B \right] &= \sum_{i=1}^{d} \frac{1}{1 + \lambda_i}
+\end{align}
+
+Siendo así, la evolución de los valores de estas métricas corresponde a una
+disminución de los mencionados autovalores.
+
+\bigskip
+
+El cálculo de los bits necesarios para almacenar las imágenes es el siguiente:
 
 \begin{verbatim}
 >> main_2_2
-La medida de tr(St\Sw) es: 1.42
-La medida de tr(Sw\Sb) es: 37.7702
 We need 6291456 bits to store the Lena image
 We need 3145728 bits to store the quantified image
 \end{verbatim}
 
-Estos valores concuerdan con la optimización de la clasificación; tenemos un
-valor pequeño para $Trace \left( S_T^{-1} S_W \right)$ y un valor grande para
-$Trace \left( S_W^{-1} S_B \right)$.
 
 Con los centroides obtenidos de la imagen \emph{Lena} con $K=7$, se ha
 cuantificado una imagen del guitarrista Paco de Lucía. Los resultados se
@@ -449,5 +486,10 @@ este laboratorio
 \label{src:fun:kmeans}
 
 \lstinputlisting{../src/CLP_Kmeans.m}
+
+\clearpage
+
+\bibliographystyle{plain}
+\bibliography{bibliography.bib}
 
 \end{document}

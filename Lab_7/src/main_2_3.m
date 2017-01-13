@@ -43,9 +43,9 @@ if plot_clusters
             'x', 'MarkerEdgeColor', 1 - c(i,:)/sum(c(i,:)))
     end
     
-    title('Sepal length vs Sepal width')
-    xlabel('Sepal length (cm)')
-    ylabel('Sepal width (cm)')
+    title('Sepal length vs Sepal width','FontSize',16,'Interpreter','latex');
+    xlabel('Sepal length (cm)','FontSize',14,'Interpreter','latex');
+    ylabel('Sepal width (cm)','FontSize',14,'Interpreter','latex');
     hold off
     
     figure
@@ -59,9 +59,9 @@ if plot_clusters
             'x', 'MarkerEdgeColor', 1 - c(i,:)/sum(c(i,:)))
     end
     
-    title('Petal length vs Petal width')
-    xlabel('Petal length (cm)')
-    ylabel('Petal width (cm)')
+    title('Petal length vs Petal width','FontSize',16,'Interpreter','latex');
+    xlabel('Petal length (cm)','FontSize',14,'Interpreter','latex');
+    ylabel('Petal width (cm)','FontSize',14,'Interpreter','latex');
     hold off
 end
 
@@ -73,7 +73,7 @@ if heatmap
     colormap('hot')
     imagesc(db_labels * db_labels')
     colorbar
-    title('Database labels heatmap')
+    title('Database labels heatmap','FontSize',16,'Interpreter','latex');
     
     % Colormap of classifier labels
     figure
@@ -81,7 +81,7 @@ if heatmap
     colormap('hot')
     imagesc(Labels * Labels')
     colorbar
-    title('K-Means labels heatmap')
+    title('K-Means labels heatmap','FontSize',16,'Interpreter','latex');
     
     % If the classifier was perfect, the 9 squares in the K-Means would look
     % like the DB squares (although the order of the colors can be different)
