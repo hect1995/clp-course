@@ -201,14 +201,32 @@ porque algunos centroides quedan ''ocultos'' dentro de la nube de puntos del
 %
 % Because of this, Trace 2 is the best metric
 
-El cálculo de $Trace \left( S_W^{-1} S_B \right)$ es el que más información da
-sobre el rendimiento del clasificador. Cuando la clasificación empeora, el valor
-de éste cálculo disminuye notablemente ($K=4$ en la figura \ref{fig:21:trace:2}),
-mientras que $J$ y $Trace \left( S_T^{-1} S_W \right)$ aumentan en menor medida
-o se mantienen.
+Los dos cálculos de traza aportan información sobre la clasificación. Esto se
+debe a que estos cálculos expresan conceptos distintos. El cálculo
+$Trace \left( S_T^{-1} S_W \right)$ aporta información sobre la compactación de
+los datos dentro de un \emph{cluster}, mientras que
+$Trace \left( S_W^{-1} S_B \right)$ aporta información sobre la separación entre
+los \emph{clusters}.
 
-Si se usa la menor $K$ que da mayor valor de $Trace \left( S_W^{-1} S_B \right)$,
-se consigue el número de clústeres óptimo para esa base de datos.
+Es por ello que se en el entrenamiento se trata de minimizar uno y maximizar el
+otro, respectivamente. Sin embargo, esto no implica que una disminución de
+$Trace \left( S_T^{-1} S_W \right)$ vaya acompañada de un aumento en
+$Trace \left( S_W^{-1} S_B \right)$. Esto se puede comprobar viendo las figuras
+\ref{fig:21:trace:1} y \ref{fig:21:trace:2} para
+$K= \left\lbrace 8, 9, 10 \right\rbrace $.
+
+Por tanto, concluimos que la evaluación del entrenamiento se debe realizar
+teniendo en cuenta las tres métricas mencionadas: la función de coste $J$, y los
+dos cálculos de traza.
+
+%El cálculo de $Trace \left( S_W^{-1} S_B \right)$ es el que más información da
+%sobre el rendimiento del clasificador. Cuando la clasificación empeora, el valor
+%de éste cálculo disminuye notablemente ($K=4$ en la figura \ref{fig:21:trace:2}),
+%mientras que $J$ y $Trace \left( S_T^{-1} S_W \right)$ aumentan en menor medida
+%o se mantienen.
+
+%Si se usa la menor $K$ que da mayor valor de $Trace \left( S_W^{-1} S_B \right)$,
+%se consigue el número de clústeres óptimo para esa base de datos.
 
 \clearpage
 
