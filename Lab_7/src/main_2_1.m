@@ -22,7 +22,12 @@ probabilities = probabilities./sum(probabilities);
 [DB, Nnew] = CLP_Generate(L,N,d,probabilities);
 
 % Draw clusters
-scatter3(DB(1,:), DB(2,:), DB(3,:))%, hold on
+figure, hold on
+scatter3(DB(1,:), DB(2,:), DB(3,:))
+title(['Generated database with $L=$', num2str(L), ' clusters'],...
+    'FontSize',16,'Interpreter','latex')
+grid on
+hold off
 
 %% Section 3
 % Classify with K-Means clustering
@@ -33,15 +38,19 @@ minimized_J = zeros(9,1);
 
 trace1 = zeros(9,1);
 trace2 = zeros(9,1);
+trace1_c = cell(9,1);
+trace2_c = cell(9,1);
 
 Sw = zeros(d,d,9);
 Sb = zeros(d,d,9);
 
 for K=2:10
-    [Centroides, Labels, n , J{K-1}, trace1(K-1), trace2(K-1), ...
+    [Centroides, Labels, n , J{K-1}, trace1_c{K-1}, trace2_c{K-1}, ...
         Sw(:,:,K-1), Sb(:,:,K-1)] = CLP_Kmeans(DB(1:d, :),K, d, th);
     
     minimized_J(K-1) = J{K-1}(end);
+    trace1(K-1) = trace1_c{K-1}(end);
+    trace2(K-1) = trace2_c{K-1}(end);
     
     if plot_clusters
         % Plot DB with color labeling
@@ -53,6 +62,8 @@ for K=2:10
             scatter3(Centroides(1,i,:), Centroides(2,i,:), Centroides(3,i,:),...
                 'x', 'MarkerEdgeColor', 1 - c/sum(c))
         end
+        title(['Classification with $K=$', num2str(K), ' clusters'],...
+            'FontSize',16,'Interpreter','latex')
         grid on
         hold off
     end
@@ -64,19 +75,29 @@ end
 figure, hold on
 plot(2:10, minimized_J)
 grid on
-title('J function')
+title('Loss function J','FontSize',16,'Interpreter','latex')
+xlabel('$K$','FontSize',14,'Interpreter','latex')
+ylabel('$J$','FontSize',14,'Interpreter','latex')
 hold off
 
 figure, hold on
 plot(2:10, trace1)
 grid on
-title('Trace 1')
+title('Evolution of $Trace \left( S_T^{-1} S_W \right)$','FontSize',16,...
+    'Interpreter','latex')
+xlabel('$K$','FontSize',14,'Interpreter','latex')
+ylabel('$Trace \left( S_T^{-1} S_W \right)$','FontSize',14,...
+    'Interpreter','latex')
 hold off
 
 figure, hold on
 plot(2:10, trace2)
 grid on
-title('Trace 2')
+title('Evolution of $Trace \left( S_W^{-1} S_B \right)$','FontSize',16,...
+    'Interpreter','latex')
+xlabel('$K$','FontSize',14,'Interpreter','latex')
+ylabel('$Trace \left( S_W^{-1} S_B \right)$','FontSize',14,...
+    'Interpreter','latex')
 hold off
 
 % Trace 2 is great, Trace 1 not good, because it decays constantly. It does so
