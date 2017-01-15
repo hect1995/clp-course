@@ -122,7 +122,7 @@ numero_bits = 8 * (numel(imageclp));
 disp(['We need ', num2str(numero_bits), ' bits to store the Lena image']);
 
 K_quant = 16;
-numero_bits_codificada = log2(K_quant) * (numel(imageclp));
+numero_bits_codificada = ceil(log2(K_quant)) * (numel(imageclp));
 disp(['We need ', num2str(numero_bits_codificada), ...
     ' bits to store the quantified image']);
 

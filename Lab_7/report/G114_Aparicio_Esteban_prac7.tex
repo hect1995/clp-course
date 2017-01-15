@@ -131,6 +131,9 @@ por \textbf{\texttt{CLP\_Generate}} (código fuente en la sección
 \ref{src:fun:generate}) y el resultado de la clasificación con 4, 9 y 10
 \emph{clusters}.
 
+Esta función genera los \emph{clusters} con parámetros (media y varianza)
+aleatorios, al igual que las probabilidades a priori de los $L$ \emph{clusters}.
+
 En los resultados de la clasificación de la figura \ref{fig:21:clusters} se
 pueden ver también algunas de las evoluciones de los centroides. No se ven todas
 porque algunos centroides quedan ''ocultos'' dentro de la nube de puntos del
@@ -138,25 +141,37 @@ porque algunos centroides quedan ''ocultos'' dentro de la nube de puntos del
 
 \begin{figure}%[h]
     \centering
-    \begin{subfigure}[b]{0.435\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=\textwidth]{../src/fig/21_database.eps}
         \caption[]{Base de datos sintética}
         \label{fig:21:db}
     \end{subfigure}
     \quad
-    \begin{subfigure}[b]{0.435\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=\textwidth]{../src/fig/21_4_clusters.eps}
         \caption[]{4 \emph{clusters}}
         \label{fig:21:4c}
     \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{../src/fig/21_7_clusters.eps}
+        \caption[]{7 \emph{clusters}}
+        \label{fig:21:7c}
+    \end{subfigure}
     \vskip\baselineskip
-    \begin{subfigure}[b]{0.435\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{../src/fig/21_8_clusters.eps}
+        \caption[]{8 \emph{clusters}}
+        \label{fig:21:8c}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=\textwidth]{../src/fig/21_9_clusters.eps}
         \caption[]{9 \emph{clusters}}
         \label{fig:21:9c}
     \end{subfigure}
     \quad
-    \begin{subfigure}[b]{0.435\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=\textwidth]{../src/fig/21_10_clusters.eps}
         \caption[]{10 \emph{clusters}}
         \label{fig:21:10c}
@@ -214,6 +229,15 @@ $Trace \left( S_T^{-1} S_W \right)$ vaya acompañada de un aumento en
 $Trace \left( S_W^{-1} S_B \right)$. Esto se puede comprobar viendo las figuras
 \ref{fig:21:trace:1} y \ref{fig:21:trace:2} para
 $K= \left\lbrace 8, 9, 10 \right\rbrace $.
+
+Hay otros detalles notables en estas métricas, tales como la caída en $J$ cuando
+$K=4$. Esto se debe a que $K = L = 4$, y los clústeres están suficientemente
+separados. Otro caso es el pico de $J$ en $K=7$. Esta subida del coste va
+relacionada con el aumento de $Trace \left( S_T^{-1} S_W \right)$ para este
+valor de $K$, aunque deseamos minimizar este cálculo. Este aumento se debe, como
+se puede ver en la figura \ref{fig:21:7c}, porque la el clasificador ha
+asignado la misma clase a dos \emph{clusters} distintos. Esto hace aumentar el
+\emph{within-scatter} de esta clasificación, a la vez que hace que $J$ empeore.
 
 Por tanto, concluimos que la evaluación del entrenamiento se debe realizar
 teniendo en cuenta las tres métricas mencionadas: la función de coste $J$, y los
@@ -331,7 +355,19 @@ disminución de los mencionados autovalores.
 
 \bigskip
 
-El cálculo de los bits necesarios para almacenar las imágenes es el siguiente:
+El cálculo de los bits necesarios para almacenar las imágenes sigue la siguiente
+ecuación:
+
+\begin{equation} \label{eq:bits}
+    N_{bits} = \lceil log_2 \left( K \right) \rceil \cdot N_{p_{img}} \cdot N_{channels}
+\end{equation}
+
+donde $N_{p_{img}}$ es el número de píxeles en la imagen y $N_{channels}$, el
+número de canales de color (en el caso RGB son 3).
+
+\bigskip
+
+El resultado del cálculo se muestra a continuación:
 
 \begin{verbatim}
 >> main_2_2
@@ -339,21 +375,36 @@ We need 6291456 bits to store the Lena image
 We need 3145728 bits to store the quantified image
 \end{verbatim}
 
-
 Con los centroides obtenidos de la imagen \emph{Lena} con $K=7$, se ha
 cuantificado una imagen del guitarrista Paco de Lucía. Los resultados se
 muestran en la figura \ref{fig:22:paco}.
 
+Los resultados de aplicar los centroides calculados en una imagen aplicados a
+otra de diferente varian dependiendo de la imagen con la que se han calculado.
+En nuestro caso, la imagen \emph{Lena} posee una gama cromática reducida. Eso
+hace que los centroides escogidos sean bastante parecidos. Por eso, colores como
+el marrón se representan muy bien en la imagen \emph{Paco} (bastante parecido al
+color general de \emph{Lena}) pero en cambio, el blanco se convierte en marrón.
+
+Un posible uso de esta técnica seria la compresión de imágenes, vía una tabla de
+colores. Si se obtuviera un gran número de centroides (ej: 256) con una imagen
+de gran variabilidad cromática, se podría re-cuantificar otras imágenes con
+estos centroides, y el resultado seria fiable, ya que la mayoría de posibles
+colores estarían representados por los centroides.
+
+Otro posible uso serviría para fines artísticos, ya que el efecto de sustituir
+los colores de una imagen por los de otra puede ser atractivo para el público.
+
 \begin{figure}[h]
     \centering
-    \begin{subfigure}[b]{0.435\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
         \includegraphics[width=\textwidth]{../src/fig/22_paco_original.eps}
         \caption[]{Imagen original}
         \label{fig:22:paco:original}
     \end{subfigure}
     \quad
     %\vskip\baselineskip
-    \begin{subfigure}[b]{0.435\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
         \includegraphics[width=\textwidth]{../src/fig/22_paco_requant.eps}
         \caption[]{Imagen recuantificada}
         \label{fig:22:paco:requant}
