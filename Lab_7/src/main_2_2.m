@@ -3,7 +3,7 @@ clear
 close all
 
 % Read Lena image
-imageclp = imread('images/lena.jpg');
+imageclp = imread('images/chroma.jpg');
 
 original_red = reshape(imageclp(:,:,1),1,[]);
 original_green = reshape(imageclp(:,:,2),1,[]);
@@ -14,7 +14,7 @@ image_rgb = [original_red ; original_green ; original_blue ];
 % Requantify image with a k-means algorithm
 
 d = 3; % RGB represents 3 dimensions
-K = 7; % Compute 7 centroids
+K = 16; % Compute 7 centroids
 th = 0.0005; % Variation threshold for the classifier
 
 % 1st centroids column represents all dimensions of red's centroids
@@ -129,7 +129,7 @@ disp(['We need ', num2str(numero_bits_codificada), ...
 %% Section 5
 % Import a different image and apply Lena's centroids
 
-imageclp2 = imread('images/PacoLucia.jpg');
+imageclp2 = imread('images/disney.jpg');
 
 original_red_p = reshape(imageclp2(:,:,1),1,[]);
 original_green_p = reshape(imageclp2(:,:,2),1,[]);
