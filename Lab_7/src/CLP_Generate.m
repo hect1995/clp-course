@@ -2,30 +2,30 @@ function [ DB, N_new ] = CLP_Generate( L, N, d, priori_prob )
 %CLP_Generate Generate a synthetic gaussian database
 %
 %   [ DB, Nnew ] = CLP_Generate( L, N, d, probabilities )
-% 
+%
 %   This function generates L clusters of gaussian-distributed d-dimensional
-%   vectors. 
-% 
+%   vectors.
+%
 %   The L clusters contains a number of samples <= N. The total number
 %   of samples (N_new) may be less than N. This could happen due to the rounding
 %   process in which each cluster is assigned a number of vectors, following the
 %   a priori probabilities vector (priori_prob).
-% 
+%
 %   INPUTS:
 %   ============================================================================
 %   - L: Number of clusters to be generated
 %   - N: Total number of samples to be generated
 %   - d: Number of dimensions in the vectors
 %   - priori_prob: Vector of a priori probabilities for the clusters
-% 
+%
 %   Notice that L == length(priori_prob)
-% 
+%
 %   OUTPUTS:
 %   ============================================================================
 %   - DB: Matrix containing the generated database (first d rows contain the
 %         vector components, last row contains the labels)
 %   - N_new: Actual total number of generated vectors (N_new <= N)
-% 
+%
 %   TODO: Insert license notice
 
 %% Check the input parameters for errors
